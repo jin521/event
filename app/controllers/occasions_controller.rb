@@ -1,4 +1,4 @@
-class OccassionsController < ApplicationController
+class OccasionsController < ApplicationController
   def index
   end
 
