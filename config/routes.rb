@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'occassions/index'
+
+  get 'occassions/new'
+
+  get 'occassions/edit'
+
+  get 'occassions/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
