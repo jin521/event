@@ -9,7 +9,7 @@ class OccasionsController < ApplicationController
   end
 
   def create
-    @occasion = Occasion.new(occasion_params)
+    @occasion = Occasion.new(occasion_params) #an object of objects from the data we add in the form when we create a new event
     if @occasion.save
       redirect_to @occasion
     else
