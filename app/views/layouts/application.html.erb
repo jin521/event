@@ -8,6 +8,12 @@
 </head>
 <body>
 
+  <%= render "layouts/header" %>
+
+  <!-- The are flash messages for the devise (authentication) gem -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>

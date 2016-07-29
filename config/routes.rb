@@ -1,15 +1,6 @@
 Rails.application.routes.draw do
-
-  get 'occasions/index'
-
-  get 'occasions/new'
-
-  get 'occasions/edit'
-
-  get 'occasions/show'
-
+  devise_for :users
   root :to => 'pages#home'
   resources :users
   resources :occasions
-
 end
