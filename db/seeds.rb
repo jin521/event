@@ -2,7 +2,7 @@
 User.destroy_all
 
 u1 = User.create(:name => 'Chris', :password => 'chicken1', :email => 'chris@gmail.com');
-u2 = User.create(:name => 'Armando', :password => 'chicken1', :email => 'armando@gmail.com');
+u2 = User.create(:name => 'Armando', :password => 'chicken1', :email => 'armando2a2r@gmail.com');
 u3 = User.create(:name => 'Jin', :password => 'chicken1', :email => 'jin@gmail.com');
 u4 = User.create(:name => 'Sally', :password => 'chicken1', :email => 'sally@gmail.com');
 u5 = User.create(:name => 'John', :password => 'chicken1', :email => 'john@gmail.com');
