@@ -1,0 +1,19 @@
+
+<%= form_for @occasion do |f|%>
+  <%= f.label :title  %> <br>
+  <%= f.text_field :title %><br>
+  <br>
+  <%= f.label :date  %> <br>
+  <%= f.text_field :date %><br>
+  <br>
+  <%= f.label :description  %> <br>
+  <%= f.text_field :description %><br>
+  <br>
+  <%= f.label :website  %> <br>
+  <%= f.text_field :website %><br>
+  <br>
+  <%= f.label :email  %> <br>
+  <%= f.text_field :email %><br>
+  <br>
+  <%= f.submit %>
+<% end %>
