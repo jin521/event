@@ -1,2 +1,6 @@
-<h1>Occasions#show</h1>
-<p>Find me in app/views/occasions/show.html.erb</p>
+<h1><%= @occasion.title %></h1>
+<div>
+  <%=@occasion.description  %>
+</div>
+<%= link_to " edit ", edit_occasion_path(@occasion) %>
+<%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
