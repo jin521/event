@@ -1,5 +1,5 @@
 
-<%= form_for @occasion do |f|%>
+<%= form_for @occasion, :html => {:multipart => true} do |f|%>
   <%= f.label :title  %> <br>
   <%= f.text_field :title %><br>
   <br>
@@ -8,6 +8,9 @@
   <br>
   <%= f.label :description  %> <br>
   <%= f.text_field :description %><br>
+  <br>
+  <%= f.label :image  %> <br>
+  <%= cl_image_upload_tag :image %> <%# For cloudinary image upload %>
   <br>
   <%= f.label :website  %> <br>
   <%= f.text_field :website %><br>

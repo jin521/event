@@ -2,5 +2,9 @@
 <div>
   <%=@occasion.description  %>
 </div>
+<div>
+  <%= cl_image_tag(@occasion.image) %> <%# To display cloudinary image %>
+</div>
+
 <%= link_to " edit ", edit_occasion_path(@occasion) %>
 <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
