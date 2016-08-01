@@ -1,6 +1,5 @@
 class OccasionsController < ApplicationController
-
-
+  before_action :check_for_user, :except => [:index, :show]
 
   def index
     @occasions = Occasion.all.order("created_at DESC")
@@ -28,8 +27,6 @@ class OccasionsController < ApplicationController
 
   end
 
-
-
   def edit
       @occasion = Occasion.find(params[:id])
   end
@@ -47,18 +44,30 @@ class OccasionsController < ApplicationController
       end
   end
 
-
   def destroy
       occasion = Occasion.find(params[:id])
       occasion.destroy
       redirect_to root_path
   end
 
-
-
   private
-
   def occasion_params
       params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
+  end
+
+  def check_for_user
+
+    # flash[:notice] = 'Please login' unless current_user.present?
+    # redirect_to new_user_session_path unless current_user.present?
+
+    # Both above and bottom ways do the same thing
+
+    flash[:notice] = 'Please login' unless user_signed_in?
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def check_for_admin
+    flash[:notice] = 'Admin acces only' unless @current_user.admin?
+    redirect_to root_path unless @current_user.admin?
   end
 end
