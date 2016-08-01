@@ -1,22 +1,39 @@
 
 <%= form_for @occasion, :html => {:multipart => true} do |f|%>
-  <%= f.label :title  %> <br>
-  <%= f.text_field :title %><br>
-  <br>
-  <%= f.label :date  %> <br>
-  <%= f.text_field :date %><br>
-  <br>
-  <%= f.label :description  %> <br>
-  <%= f.text_field :description %><br>
-  <br>
-  <%= f.label :image  %> <br>
-  <%= cl_image_upload_tag :image %> <%# For cloudinary image upload %>
-  <br>
-  <%= f.label :website  %> <br>
-  <%= f.text_field :website %><br>
-  <br>
-  <%= f.label :email  %> <br>
-  <%= f.text_field :email %><br>
-  <br>
+  <div class="">
+    <%= f.label :title  %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="">
+    <%= f.label :date  %>
+    <%= f.text_field :date %>
+  </div>
+
+  <div class="">
+    <%= f.label :description  %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="">
+    <%= f.label :image  %> <br>
+    <%= cl_image_upload_tag :image %> <%# For cloudinary image upload %>
+  </div>
+
+  <div class="">
+    <%= f.label :location  %> <br>
+    <%= f.text_field :location %><br>
+  </div>
+
+  <div class="">
+    <%= f.label :website  %>
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="">
+    <%= f.label :email  %>
+    <%= f.text_field :email %>
+  </div>
+
   <%= f.submit %>
 <% end %>

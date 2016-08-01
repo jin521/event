@@ -1,5 +1,7 @@
 class OccasionsController < ApplicationController
 
+
+
   def index
     @occasions = Occasion.all.order("created_at DESC")
   end
@@ -23,6 +25,7 @@ class OccasionsController < ApplicationController
 
   def show
     @occasion = Occasion.find(params[:id])
+
   end
 
 
@@ -56,6 +59,6 @@ class OccasionsController < ApplicationController
   private
 
   def occasion_params
-      params.require(:occasion).permit(:title, :description,:date, :email, :phone)
+      params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
   end
 end

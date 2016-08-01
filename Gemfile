@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 gem 'font-awesome-rails'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
@@ -34,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise', '~> 3.5', '>= 3.5.6'
-# Cloudinary 
+# Cloudinary
 gem 'cloudinary'
 
 group :development, :test do
@@ -47,6 +46,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'pry-rails'
   gem 'annotate'
+  gem 'geocoder'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

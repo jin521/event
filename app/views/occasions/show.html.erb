@@ -1,6 +1,9 @@
 <h1><%= @occasion.title %></h1>
 <div>
-  <%=@occasion.description  %>
+  <%=@occasion.description  %></br>
+  <%=@occasion.location  %></br>
+  <%=image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@occasion.latitude},#{@occasion.longitude}&zoom=12&size=400x400&key=AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY" %>
+   
 </div>
 <div>
   <%= cl_image_tag(@occasion.image) %> <%# To display cloudinary image %>
@@ -8,3 +11,6 @@
 
 <%= link_to " edit ", edit_occasion_path(@occasion) %>
 <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+
+
+<!-- google map API key - AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY -->
