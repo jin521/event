@@ -46,6 +46,14 @@ class OccasionsController < ApplicationController
       redirect_to root_path
   end
 
+  def search #displays a search a search form
+  end
+
+  def search_results # displays search results
+      @found_occasions = Occasion.keyword_search(params[:search_keywords])
+
+  end
+
 
 
   private
