@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   resources :occasions
   resources :users
+
+  get 'search' => 'occasions#search', as: 'search'
+  get 'search_results' => 'occasions#search_results', as: 'search_results'
 end
