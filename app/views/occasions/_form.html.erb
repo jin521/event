@@ -5,8 +5,13 @@
   </div>
 
   <div class="">
-    <%= f.label :date  %>
-    <%= f.text_field :date %>
+    <%= f.label :date_start  %>
+    <%= f.text_field :date_start %>
+  </div>
+
+  <div class="">
+    <%= f.label :date_end  %>
+    <%= f.text_field :date_end %>
   </div>
 
   <div class="">
@@ -14,14 +19,11 @@
     <%= f.text_field :description %>
   </div>
 
-  <div class="">
-    <%= f.label :image  %> <br>
-    <%= cl_image_upload_tag :image %> <%# For cloudinary image upload %>
-  </div>
 
   <div class="">
     <%= f.label :location  %> <br>
     <%= f.text_field :location %><br>
+    
   </div>
 
   <div class="">
@@ -34,6 +36,5 @@
     <%= f.text_field :email %>
   </div>
 
->>>>>>> cb2fc4eaceec549bb2d044a5c585b097de2c190f
   <%= f.submit %>
 <% end %>
