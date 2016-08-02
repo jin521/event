@@ -1,4 +1,6 @@
 class OccasionsController < ApplicationController
+  before_action :check_for_user, :except => [:index, :show]
+
   def index
     @occasions = Occasion.all.order("created_at DESC")
 
@@ -30,6 +32,8 @@ class OccasionsController < ApplicationController
 
   def create
     @occasion = Occasion.new(occasion_params) #an object of objects from the data we add in the form when we create a new event
+    @occasion.user_id = @current_user.id
+
     if params[:file].present?
       req = Cloudinary::Uploader.upload(params[:file])     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new occasion.
       @occasion.image = req["url"]
@@ -46,10 +50,9 @@ class OccasionsController < ApplicationController
 
   end
 
-
-
   def edit
       @occasion = Occasion.find(params[:id])
+      redirect_to root_path unless @occasion.user_id == @current_user.id ### AUTHORISATION FOR USERS
   end
 
   def update
@@ -65,11 +68,15 @@ class OccasionsController < ApplicationController
       end
   end
 
-
   def destroy
       occasion = Occasion.find(params[:id])
-      occasion.destroy
-      redirect_to root_path
+      if occasion.user_id == @current_user.id || @current_user.admin?
+        occasion.destroy
+        redirect_to root_path
+      else
+        flash[:notice] = 'Admin Acces Only'
+        redirect_to root_path
+      end
   end
 
   def search #displays search forms
@@ -94,13 +101,23 @@ class OccasionsController < ApplicationController
     end
   end
 
-
-
   private
-
   def occasion_params
       params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
   end
 
+  def check_for_user
+    # flash[:notice] = 'Please login' unless current_user.present?
+    # redirect_to new_user_session_path unless current_user.present?
+    # Both above and bottom ways do the same thing
 
+    flash[:notice] = 'Please login' unless user_signed_in?
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  # def authorise_user
+  #  flash[:notice] = 'Admin acces only' unless current_user.admin?
+  #  redirect_to root_path unless current_user.present? && current_user.admin?
+#  end
+  # def parsed_date(date_string, default)
 end
