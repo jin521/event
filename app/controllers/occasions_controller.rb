@@ -49,7 +49,7 @@ class OccasionsController < ApplicationController
 
   def edit
       @occasion = Occasion.find(params[:id])
-      redirect_to root_path unless @occasion.user_id == @current_user.id ### NEED TO ADD FLASH MESSAGE
+      redirect_to root_path unless @occasion.user_id == @current_user.id ### AUTHORISATION FOR USERS
   end
 
   def update
@@ -67,8 +67,9 @@ class OccasionsController < ApplicationController
 
   def destroy
       occasion = Occasion.find(params[:id])
-      if occasion.user_id == @current_user.id
+      if occasion.user_id == @current_user.id || @current_user.admin?
         occasion.destroy
+        redirect_to root_path
       else
         redirect_to root_path
       end
