@@ -1,10 +1,25 @@
 class OccasionsController < ApplicationController
-
-
-
   def index
     @occasions = Occasion.all.order("created_at DESC")
+
+      ###############################
+      # EVENTFINDA gem
+      auth     = {:username => "gaproject", :password => "p2sb3nk4g3d7"}
+      response = HTTParty.get('http://api.eventfinda.com.au/v2/events.json?rows=20', :basic_auth => auth)
+      # binding.pry
+        response["events"].each do |event|
+        occasion = Occasion.find_by :eventfinda_id => event['id']
+        # Adding to a var the event id
+        #creating an img cariable to get images
+        image = event['images']['images'][0]['transforms']['transforms'][-1]['url']
+        if occasion.nil?
+          Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :image => image, :eventfinda_id => event['id']
+        end
+        # Adding the data to our database and then checking if the id is there not to repeat the events
+      end
+      @occasions = Occasion.all
   end
+
 
   def new
     @occasion = Occasion.new
