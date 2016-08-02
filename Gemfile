@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 gem 'font-awesome-rails'
-
-
 gem 'feedjira'
 gem 'httparty'
 
