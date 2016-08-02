@@ -14,9 +14,8 @@ class OccasionsController < ApplicationController
         image = event['images']['images'][0]['transforms']['transforms'][-1]['url']
         if occasion.nil?
 
-
-
           Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :image => image, :eventfinda_id => event['id'], :address => event['address'], :location => event['location_summary']
+          #fetching  API data and saving to database(.create), renaming attribute names of API event data
 
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
@@ -73,25 +72,24 @@ class OccasionsController < ApplicationController
       redirect_to root_path
   end
 
-  def search #displays a search a search form
+  def search #displays search forms
   end
 
   def search_results # displays search results
     # raise 'hell'
-    if params.has_key?("search_location")
+    if params.has_key?("search_location")  #"search_location" is the id of this search from, has.key? means is this search form is filled out
       # raise 'hell'
-      @found_occasions = Occasion.location_search(params[:search_location])
-      @search_term = params[:search_location]
+      @found_occasions = Occasion.location_search(params[:search_location])  # we make location_search a model level method
+      @search_term = params[:search_location]  #create this varible to store the name to display for search, check search_results.html.erb
 
     elsif params.has_key?("search_keywords")
       @found_occasions = Occasion.keyword_search(params[:search_keywords])
       @search_term = params[:search_keywords]
 
     elsif params.has_key?(:search_date_from) || params.has_key?(:search_date_to)
-      date_start = Date.strptime(params[:search_date_from], "%m/%d/%Y")
+      date_start = Date.strptime(params[:search_date_from], "%m/%d/%Y") # converting the date formate form jquery date picker into the formate Rails recognize
       date_end = Date.strptime(params[:search_date_to], "%m/%d/%Y")
-
-      @found_occasions = Occasion.date_search(date_start, date_end)
+      @found_occasions = Occasion.date_search(date_start, date_end)  # we make date_search a model level method
       @search_term = params[:search_date_from] + " - " + params[:search_date_to]
     end
   end
@@ -104,5 +102,5 @@ class OccasionsController < ApplicationController
       params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
   end
 
-  # def parsed_date(date_string, default)
+
 end
