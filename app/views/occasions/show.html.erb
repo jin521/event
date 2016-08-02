@@ -3,15 +3,14 @@
 
 <div>
   <%=@occasion.description  %></br>
-  <%=@occasion.date_start  %></br>
+  <%=@occasion.date_start %></br>
   <%=@occasion.date_end  %></br>
-
   <%=@occasion.location  %></br>
-  <%=image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{@occasion.latitude},#{@occasion.longitude}&zoom=12&size=400x400&key=AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY" %>
+  <img src="<%= "https://maps.googleapis.com/maps/api/staticmap?center=#{@occasion.latitude},#{@occasion.longitude}&zoom=12&size=400x400&key=AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY" %>">
 
 </div>
 <div>
-  <%= cl_image_tag(@occasion.image) %> <%# To display cloudinary image %>
+
 </div>
 
 <%= link_to " edit ", edit_occasion_path(@occasion) %>
