@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802010919) do
+ActiveRecord::Schema.define(version: 20160802050225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feeds", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.string "status"
+  end
 
   create_table "occasions", force: :cascade do |t|
     t.string   "title"
@@ -32,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160802010919) do
     t.datetime "date_end"
     t.integer  "eventfinda_id"
     t.string   "cloudinary_image"
+    t.string   "address"
   end
 
   create_table "occasions_users", force: :cascade do |t|
