@@ -6,7 +6,7 @@
           <img src='<%= occasion.image %>' alt="some_text" class="occasion-image" />
         </figure>
         <section class="text-container">
-          <h3><%= occasion.title %></h3>
+          <h3><%= truncate(occasion.title, :length => 20) %></h3>
           <div><%= truncate(occasion.description, :length => 80) %></div>
         </section>
       </article>

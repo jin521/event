@@ -2,10 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//----------------------------------------------------------------------------//
+$button-red: #cd003b;
+$button-red-hover: #9e002e;
+$text-color: #333333;
+
 .occasion-image {
   max-width: 100%;
-  height: auto;
-  max-height: 50vh;
+  max-height: 22vh;
 }
 
 .occasion-images-wrapper {
@@ -16,17 +20,18 @@
 }
 
 .wrap {
-  min-height: 50vh;
-  max-width: 25vw;
+  min-height: 45vh;
+  max-width: 28vw;
   position: relative;
   margin: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   overflow: hidden;
-  left: 5vw;
-  right: 5vw;
+
   top: 5vh;
   text-align: center;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .wrap:hover {
@@ -35,4 +40,16 @@
 
 .text-container {
   position: absolute;
+  h3 {
+    background-color: $button-red;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    padding: 1vh 0 1vh 0;
+  }
+  div {
+    color: $text-color;
+    font-size: 1.2em;
+    padding: 0 2vw 0 2vw;
+    font-weight: 500;
+  }
 }
