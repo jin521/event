@@ -13,11 +13,11 @@ class OccasionsController < ApplicationController
         #creating an img cariable to get images
         image = event['images']['images'][0]['transforms']['transforms'][-1]['url']
         if occasion.nil?
-          Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :image => image, :eventfinda_id => event['id']
+          Occasion.create :title => event['name'], :description => event['description'], :address => event['address'],:date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :image => image, :eventfinda_id => event['id']
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
-      # @occasions = Occasion.all
+      @occasions = Occasion.all
   end
 
 
@@ -74,7 +74,7 @@ class OccasionsController < ApplicationController
 
   def search_results # displays search results
       @found_occasions = Occasion.keyword_search(params[:search_keywords])
-
+      @found_occasions_locations = Occasion.location_search(params[:search_location])
   end
 
 
