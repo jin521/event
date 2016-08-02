@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 gem 'font-awesome-rails'
 gem 'feedjira'
 gem 'httparty'
+gem 'geocoder
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
