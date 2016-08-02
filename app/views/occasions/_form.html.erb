@@ -1,34 +1,39 @@
+<%= form_for @occasion, :html => {:multipart => true} do |f|%>
+  <div class="">
+    <%= f.label :title  %>
+    <%= f.text_field :title %>
+  </div>
 
-<%= form_for @occasion do |f|%>
-  <%= f.label :title  %> <br>
-  <%= f.text_field :title %><br>
-  <br>
-  <%= f.label :date_start  %> <br>
-  <%= f.text_field :date_start %><br>
-  <br>
-  <%= f.label :date_end  %> <br>
-  <%= f.text_field :date_end %><br>
-</br>
-  <%= f.label :description  %> <br>
-  <%= f.text_field :description %><br>
-  <br>
-  <%= f.label :image  %> <br>
-  <%= f.text_field :image %><br>
-  <br>
-  <%= f.label :location  %> <br>
-  <%= f.text_field :location %><br>
-  <br>
-  <%= f.label :Longitude  %> <br>
-  <%= f.text_field :longitude %><br>
-  <br>
-  <%= f.label :Latitude %> <br>
-  <%= f.text_field :latitude %><br>
-  <br>
-  <%= f.label :website  %> <br>
-  <%= f.text_field :website %><br>
-  <br>
-  <%= f.label :email  %> <br>
-  <%= f.text_field :email %><br>
-  <br>
+  <div class="">
+    <%= f.label :date  %>
+    <%= f.text_field :date %>
+  </div>
+
+  <div class="">
+    <%= f.label :description  %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="">
+    <%= f.label :image  %> <br>
+    <%= cl_image_upload_tag :image %> <%# For cloudinary image upload %>
+  </div>
+
+  <div class="">
+    <%= f.label :location  %> <br>
+    <%= f.text_field :location %><br>
+  </div>
+
+  <div class="">
+    <%= f.label :website  %>
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="">
+    <%= f.label :email  %>
+    <%= f.text_field :email %>
+  </div>
+
+>>>>>>> cb2fc4eaceec549bb2d044a5c585b097de2c190f
   <%= f.submit %>
 <% end %>

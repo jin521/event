@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'font-awesome-rails'
 
+
 gem 'feedjira'
 gem 'httparty'
 
@@ -38,6 +39,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise', '~> 3.5', '>= 3.5.6'
+# Cloudinary
+gem 'cloudinary'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

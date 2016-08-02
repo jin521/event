@@ -27,6 +27,10 @@ class OccasionsController < ApplicationController
 
   def create
     @occasion = Occasion.new(occasion_params) #an object of objects from the data we add in the form when we create a new event
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new occasion.
+      @occasion.image = req["url"]
+    end
     if @occasion.save
       redirect_to @occasion
     else
@@ -47,6 +51,10 @@ class OccasionsController < ApplicationController
 
   def update
       @occasion = Occasion.find(params[:id])
+      if (params[:file]).present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @product.image = req["url"]
+    end
       if @occasion.update(occasion_params)
         redirect_to @occasion
       else
@@ -59,6 +67,14 @@ class OccasionsController < ApplicationController
       occasion = Occasion.find(params[:id])
       occasion.destroy
       redirect_to root_path
+  end
+
+  def search #displays a search a search form
+  end
+
+  def search_results # displays search results
+      @found_occasions = Occasion.keyword_search(params[:search_keywords])
+
   end
 
 
