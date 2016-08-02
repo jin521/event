@@ -17,7 +17,7 @@ class OccasionsController < ApplicationController
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
-      # @occasions = Occasion.all
+      @occasions = Occasion.all
   end
 
 
@@ -74,7 +74,7 @@ class OccasionsController < ApplicationController
 
   def search_results # displays search results
       @found_occasions = Occasion.keyword_search(params[:search_keywords])
-
+      @found_occasions_locations = Occasion.location_search(params[:search_location])
   end
 
 

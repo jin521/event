@@ -29,5 +29,10 @@ class Occasion < ActiveRecord::Base
     end
 
 
+    def self.location_search(location)   #make keyword_search a class level method, we try to make the funciton in controller slim
+      location = "%" + location+ "%"
+      Occasion.where("location LIKE ?", location)  # Acitive Record saves us from writing DB queries in SQL manualy/direclty. here LIKE Is a SQL operator, it is not case sensitive,   % % is like * in reqgular expresison ( anything ) %% is called wildcard  ? is for protecting from SQL injection
+    end
+
 
 end
