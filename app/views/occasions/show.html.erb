@@ -2,10 +2,9 @@
 <img src='<%= @occasion.image %>' alt="some_text" style="width:width;height:height;">
 <div>
   <%=@occasion.description  %></br>
-
   <%=@occasion.date_start  %></br>
   <%=@occasion.date_end  %></br>   <%# @occasion.date_end.strftime("%e %b") %>
-
+  <%= @occasion.address %></br>
   <%=@occasion.location  %></br>
   <img src="<%= "https://maps.googleapis.com/maps/api/staticmap?center=#{@occasion.latitude},#{@occasion.longitude}&zoom=12&size=400x400&key=AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY" %>">
 
