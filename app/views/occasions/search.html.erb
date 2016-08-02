@@ -1,15 +1,22 @@
 <p>search will go here</p>
 
-
 <!-- search by keywords -->
 <%= form_tag search_results_path, method: 'get' do %>
-  <%= text_field_tag :search_keywords, :placeholder => "enter password" %>
+  <%= text_field_tag :search_keywords, nil, placeholder: "enter keyword" %>
   <%= submit_tag "search" %>
   <% end %>
 
 
-  <!-- search by location -->
+<!-- search by location -->
   <%= form_tag search_results_path, method: 'get' do %>
-    <%= text_field_tag :search_location %>
+    <%= text_field_tag :search_location, nil, placeholder: 'enter location' %>
     <%= submit_tag "search" %>
     <% end %>
+
+
+<!-- search by start and end date -->
+      <%= form_tag search_results_path, method: 'get' do %>
+        <%= text_field_tag 'search_date_from', nil, placeholder: 'start date',class:'datepicker' %>
+        <%= text_field_tag 'search_date_to', nil, placeholder: 'end date', class:'datepicker'%>
+        <%= submit_tag "search" %>
+        <% end %>
