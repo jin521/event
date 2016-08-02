@@ -1,144 +1,375 @@
-.image-shadow {
-   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/*========= COLORS =======*/
+$p-color: #50BCC6;
+$s-color: #273B47;
+$pink: #E2425A;
+$green: #009688;
+$black: #000000;
+$white: #FFFFFF;
+$grey: #E2E2E2;
+$light-grey: #B6B6B6;
+$blue-grey: #607D8B;
+$f-grey: #fafafa;
+$b-grey: #ebebeb;
+/*========= FONT FAMILY =======*/
+$p-font: "Raleway", "Helvetica Neue",Arial,Verdana,sans-serif;
+/*========= FONT SIZE =======*/
+$a: 18px;
+$p20: 20px;
+/*========= mixin =======*/
+@mixin border {
+    height: 1000px;
+    padding: 30px 10px;
+    margin: 4em 0;
+    background: $f-grey;
+    border: 1px solid $b-grey;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0 1px 2px 0;
 }
-
-.red-button {
-  -webkit-border-radius: 3;
-  -moz-border-radius: 3;
-  border-radius: 3px;
-  font-family: Georgia;
-  color: #ffffff;
-  font-size: 20px;
-  background: #cd003b;
-  padding: 15px 30px 15px 30px;
-  text-decoration-color: none;
-  text-emphasis-style: none;
-}
-
-.red-button:hover {
-  background: #9e002e;
-  text-decoration: none;
-}
-
-/*---------------------------------------------------------------------------*/
-/* VIDEO */
-
-.title-container {
-    z-index: 1000;
-    position: absolute;
-    top: 35%;
-    width: 100%;
+@mixin border-green {
+    position: relative;
     text-align: center;
-    color: #fff;
+    border: 1px solid $p-color;
+    border-radius: 25px;
 }
-
-.video-heading {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 5em;
+@mixin input-text {
+    border: none;
+    font-size: 35px;
+    box-shadow: none;
+    background-color: transparent;
 }
-
-.video-subheading {
-  font-weight: 300;
-  font-size: 2em;
+@mixin button-form {
+    position: absolute;
+    background-color: $p-color;
+    color: $white;
+    border: none;
+    border-radius: 50%;
+    padding: 21px 25px;
+    &:hover {
+        background-color: $white;
+        color: $s-color;
+        border: 1px solid $p-color;
+    }
 }
-
-.homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
+/*================================================================================*/
+/*===========================   Styles ==========================================*/
+//=============== global ===============
+h1 {
+    font-family: $p-font;
+    text-align: center;
 }
-
-.no-video .video-container video,
-.touch .video-container video {
-    display: none;
+ul {
+    list-style-type: none;
+    a {
+        font-size: 20px;
+        color: $black;
+        &:hover {
+            text-decoration: none;
+            color: $white;
+        }
+    }
 }
-
-.no-video .video-container .poster,
-.touch .video-container .poster {
-    display: block !important;
+//=============== header ===============
+.mainnav {
+    padding: 10px;
+    margin: 0;
+    border: none !important;
+    .mainnav {
+        a {
+            list-style-type: none;
+            color: $s-color !important;
+            font-size: $a;
+            &:hover {
+                color: $green !important;
+            }
+        }
+    }
+    form {
+        margin-top: 20px;
+        input {
+            border: none;
+            border-radius: 10px;
+            padding: 5px 8px;
+            &[type="submit"] {
+                background-color: $p-color;
+                color: $white;
+                &:hover {
+                    background-color: $white;
+                    color: $s-color;
+                }
+            }
+        }
+    }
 }
-
-.video-container {
-    position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.video-container .poster img {
-    width: 100%;
+//=============== footer ===============
+footer {
     bottom: 0;
-    position: absolute;
-}
-
-.video-container .filter {
-    z-index: 100;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.4);
     width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
 }
-
-.video-container video {
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
+//=============== home page ===============
+.home-header {
+    height: 400px;
+    background-color: $p-color;
+    background-image: image-url("home-header.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    h1 {
+        text-align: left;
+        line-height: 1.5;
+        margin-top: 100px;
+        margin-left: 60px;
+    }
 }
-
-.video-container video.fillWidth {
-    width: 100%;
+//=============== Sign up FORM ===============
+.sign-form {
+    hgroup {
+        text-align: center;
+        margin-top: 4em;
+    }
+    h1,
+    h3 {
+        font-weight: 300;
+    }
+    h1 {
+        color: #636363;
+    }
+    h3 {
+        color: #4a89dc;
+    }
+    form {
+        width: 380px;
+        margin: 4em auto;
+        padding: 3em 2em 2em;
+        background: #fafafa;
+        border: 1px solid #ebebeb;
+        box-shadow: rgba(0,0,0,0.14902) 0 1px 1px 0px,rgba(0,0,0,0.09804) 0 1px 2px 0;
+        .group {
+            position: relative;
+            margin-bottom: 45px;
+        }
+        input {
+            font-size: 18px;
+            padding: 10px 10px 10px 5px;
+            -webkit-appearance: none;
+            display: block;
+            background: #fafafa;
+            color: #636363;
+            width: 100%;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid #757575;
+            &:focus {
+                outline: none;
+            }
+        }
+        .submit {
+            background-color: $p-color !important;
+            color: $white;
+            border: none;
+            &:hover {
+                background-color: $white !important;
+                color: $p-color;
+                border: 1px solid $p-color;
+            }
+        }
+        /* Label */
+        label {
+            color: #999;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            transition: all 0.2s ease;
+        }
+    }
+    /* active */
+    input.used ~ label,
+    input:focus ~ label {
+        top: -20px;
+        transform: scale(.75);
+        left: -2px;
+        /* font-size: 14px; */
+        color: $p-color;
+    }
+    /* Underline */
+    .bar {
+        position: relative;
+        display: block;
+        width: 100%;
+    }
+    .bar:after,
+    .bar:before {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: $p-color;
+        transition: all 0.2s ease;
+    }
+    .bar:before {
+        left: 50%;
+    }
+    .bar:after {
+        right: 50%;
+    }
+    /* active */
+    input:focus ~ .bar:after,
+    input:focus ~ .bar:before {
+        width: 50%;
+    }
+    /* Highlight */
+    .highlight {
+        position: absolute;
+        height: 60%;
+        width: 100px;
+        top: 25%;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+    /* active */
+    input:focus ~ .highlight {
+        animation: inputHighlighter 0.3s ease;
+    }
 }
-
-/*---------------------------------------------------------------------------*/
-/* DIV 2 */
-
-.homepage-content {
-  background-color: #FFFFFF;
-  min-height: 200vh;
-  position: relative; /* Allows me to manipulate absolute postioned child elements */
+//===============  Form when starts new client =================
+.start-lists {
+    @include border;
+    @include border;
+    background-color: $grey;
+    .index-form {
+        @include border-green;
+        input {
+            &[type="text"] {
+                @include input-text;
+                text-align: left;
+                padding: 30px 0 30px 100px;
+            }
+            &[type="submit"] {
+                @include button-form;
+                padding: 30px 33px;
+                top: -2px;
+                left: -10px;
+            }
+        }
+    }
+    ul {
+        margin-top: 30px;
+        padding: 0;
+        li {
+            font-size: 25px;
+            padding: 10px 0 10px 20px;
+            &:hover {
+                background-color: $p-color;
+            }
+            a {
+                font-size: 30px;
+                margin-left: 10px;
+            }
+        }
+    }
 }
-
-.homepage-content {
-  h2, h4 {
-    position: absolute;
-    left: 22vw;
-  }
-  h2 {
-    bottom: 110vh;
-  }
-  h4 {
-    bottom: 105vh;
-  }
-}
-
-.content-section {
-  min-height: 20vh;
-  width: 100vw;
-  background-color: #14141E;
-  position: absolute;
-   h1 {
-     text-align: center;
-     color: #FFFFFF;
-   }
-}
-
-.photo-section {
-  background-color: yellow;
-}
-
-.explore-section-button {
-  @extend .red-button; /* DRY coding */
-  position: absolute;
-  left: 40%; /* centre position */
-  left: 40%;
-  bottom: 90vh;
-}
-
-.explore-image {
-  width: 100vw;
-  height: auto;
-  position: absolute;
-  bottom: 0;
+//===============  Main Container for list and task =================
+.main-container {
+    .index_list_show {
+        padding: 0;
+        .index-list-task {
+            @include border;
+            background-color: $grey;
+            .index-form {
+                @include border-green;
+                input {
+                    &[type="text"] {
+                        @include input-text;
+                        text-align: left;
+                        padding: 30px 0 30px 100px;
+                    }
+                    &[type="submit"] {
+                        @include button-form;
+                        top: -1px;
+                        left: -7px;
+                    }
+                }
+            }
+            ul {
+                margin-top: 30px;
+                padding: 0;
+                li {
+                    padding: 10px 0 10px 20px;
+                    &:hover {
+                        background-color: $p-color;
+                    }
+                }
+            }
+        }
+    }
+    .edit_list_show {
+        @include border;
+        .edit-list-form-task {
+            .edit {
+                @include border-green;
+                input {
+                    &[type="text"] {
+                        @include input-text;
+                        text-align: center;
+                        padding: 30px;
+                    }
+                }
+                button.edit-btn {
+                    @include button-form;
+                    top: -1px;
+                    left: -7px;
+                }
+                a {
+                    @include button-form;
+                    top: -1px;
+                    right: -6px;
+                }
+            }
+        }
+    }
+    .form {
+        .new-tasks {
+            form.new_task {
+                @include border-green;
+                text-align: left;
+                input {
+                    &[type="text"] {
+                        @include input-text;
+                        text-align: center;
+                        font-size: 20px;
+                        padding-left: 10px;
+                    }
+                    &[type="submit"] {
+                        @include button-form;
+                        padding: 8px 13px;
+                        top: -1px;
+                        left: -1px;
+                    }
+                }
+            }
+        }
+    }
+    ul.task-list {
+        li:nth-child(even) {
+            background-color: red;
+        }
+        li {
+            a {
+                margin-right: 6px;
+            }
+            &:nth-child(even) {
+                background-color: red;
+            }
+        }
+        .edit_task {
+            display: inline-block;
+        }
+    }
 }
