@@ -67,8 +67,11 @@ class OccasionsController < ApplicationController
 
   def destroy
       occasion = Occasion.find(params[:id])
-      occasion.destroy
-      redirect_to root_path
+      if occasion.user_id == @current_user.id
+        occasion.destroy
+      else
+        redirect_to root_path
+      end
   end
 
   def search #displays a search a search form
