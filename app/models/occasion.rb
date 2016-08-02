@@ -18,7 +18,9 @@
 #
 
 class Occasion < ActiveRecord::Base
-    has_and_belongs_to_many :users
+    belongs_to :user
+    has_many :users, :through => :rsvp
+    has_many :rsvps
 
     geocoded_by :location
     after_validation :geocode

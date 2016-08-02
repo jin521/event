@@ -11,6 +11,8 @@ class OccasionsController < ApplicationController
 
   def create
     @occasion = Occasion.new(occasion_params) #an object of objects from the data we add in the form when we create a new event
+    @occasion.user_id = @current_user.id
+
     if params[:file].present?
       req = Cloudinary::Uploader.upload(params[:file])     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new occasion.
       @occasion.image = req["url"]
@@ -29,6 +31,7 @@ class OccasionsController < ApplicationController
 
   def edit
       @occasion = Occasion.find(params[:id])
+      redirect_to root_path unless @occasion.user_id == @current_user.id ### NEED TO ADD FLASH MESSAGE
   end
 
   def update
@@ -63,18 +66,16 @@ class OccasionsController < ApplicationController
   end
 
   def check_for_user
-
     # flash[:notice] = 'Please login' unless current_user.present?
     # redirect_to new_user_session_path unless current_user.present?
-
     # Both above and bottom ways do the same thing
 
     flash[:notice] = 'Please login' unless user_signed_in?
     redirect_to new_user_session_path unless user_signed_in?
   end
 
-  def check_for_admin
-    flash[:notice] = 'Admin acces only' unless @current_user.admin?
-    redirect_to root_path unless @current_user.admin?
-  end
+  # def authorise_user
+  #  flash[:notice] = 'Admin acces only' unless current_user.admin?
+  #  redirect_to root_path unless current_user.present? && current_user.admin?
+#  end
 end
