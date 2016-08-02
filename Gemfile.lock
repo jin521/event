@@ -46,11 +46,7 @@ GEM
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-<<<<<<< HEAD
     bootstrap-sass (3.3.7)
-=======
-    bootstrap-sass (3.3.6)
->>>>>>> dddcc9246cd377e240c3e21c62e3fef42a0ddb4c
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
@@ -95,12 +91,8 @@ GEM
       activesupport (>= 4.1.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-<<<<<<< HEAD
     httparty (0.14.0)
-=======
-    httparty (0.13.7)
       json (~> 1.8)
->>>>>>> dddcc9246cd377e240c3e21c62e3fef42a0ddb4c
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.6.0)

@@ -17,7 +17,7 @@ class OccasionsController < ApplicationController
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
-      @occasions = Occasion.all
+      # @occasions = Occasion.all
   end
 
 
