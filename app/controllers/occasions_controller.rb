@@ -8,14 +8,18 @@ class OccasionsController < ApplicationController
       # EVENTFINDA gem
       auth     = {:username => "gaproject", :password => "p2sb3nk4g3d7"}
       response = HTTParty.get('http://api.eventfinda.com.au/v2/events.json?rows=20', :basic_auth => auth)
-       #binding.pry
+        # binding.pry
         response["events"].each do |event|
         occasion = Occasion.find_by :eventfinda_id => event['id']
         # Adding to a var the event id
         #creating an img cariable to get images
         image = event['images']['images'][0]['transforms']['transforms'][-1]['url']
         if occasion.nil?
+
+
+
           Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :image => image, :eventfinda_id => event['id'], :address => event['address'], :location => event['location_summary']
+
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
@@ -71,6 +75,7 @@ class OccasionsController < ApplicationController
         occasion.destroy
         redirect_to root_path
       else
+        flash[:notice] = 'Admin Acces Only'
         redirect_to root_path
       end
   end
@@ -79,7 +84,23 @@ class OccasionsController < ApplicationController
   end
 
   def search_results # displays search results
-      @found_occasions_locations = Occasion.location_search(params[:search_location])
+    # raise 'hell'
+    if params.has_key?("search_location")
+      # raise 'hell'
+      @found_occasions = Occasion.location_search(params[:search_location])
+      @search_term = params[:search_location]
+
+    elsif params.has_key?("search_keywords")
+      @found_occasions = Occasion.keyword_search(params[:search_keywords])
+      @search_term = params[:search_keywords]
+
+    elsif params.has_key?(:search_date_from) || params.has_key?(:search_date_to)
+      date_start = Date.strptime(params[:search_date_from], "%m/%d/%Y")
+      date_end = Date.strptime(params[:search_date_to], "%m/%d/%Y")
+
+      @found_occasions = Occasion.date_search(date_start, date_end)
+      @search_term = params[:search_date_from] + " - " + params[:search_date_to]
+    end
   end
 
   private
@@ -100,4 +121,5 @@ class OccasionsController < ApplicationController
   #  flash[:notice] = 'Admin acces only' unless current_user.admin?
   #  redirect_to root_path unless current_user.present? && current_user.admin?
 #  end
+  # def parsed_date(date_string, default)
 end

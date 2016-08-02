@@ -1,3 +1,4 @@
+
 <h1><%= @occasion.title %></h1>
 <img src='<%= @occasion.image %>' alt="some_text" style="width:width;height:height;">
 <div>
@@ -6,7 +7,11 @@
   <%=@occasion.date_end  %></br>   <%# @occasion.date_end.strftime("%e %b") %>
   <%= @occasion.address %></br>
   <%=@occasion.location  %></br>
-  <img src="<%= "https://maps.googleapis.com/maps/api/staticmap?center=#{@occasion.latitude},#{@occasion.longitude}&zoom=12&size=400x400&key=AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY" %>">
+  <div id="map" style="width:600px;height:400px"></div>
+  <script>
+    var myLatLng = {lat: <%= @occasion.latitude %>, lng: <%= @occasion.longitude %>};
+  </script>
+
 
 </div>
   <% unless @occasion.cloudinary_image.nil? %>
@@ -20,4 +25,9 @@
 <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
 
 
-<!-- google map API key - AIzaSyChmVa7-DGQdGCjS5i_FeCPvtM-I5E6spY -->
+<!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap"
+          async defer></script>
