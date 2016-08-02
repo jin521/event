@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :occasions
   resources :users
 
+  get 'feeds/index'
+  get 'feeds/show'
+  get '/feed' => 'feeds#index'
+
   get 'search' => 'occasions#search', as: 'search'
   get 'search_results' => 'occasions#search_results', as: 'search_results'
 end

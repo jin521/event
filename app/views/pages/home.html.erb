@@ -11,12 +11,13 @@
   </div>
     <div class="video-container">
         <div class="filter"></div>
-        <video autoplay loop class="fillWidth">
+        <%= video_tag (['Fade-To-Black.mp4', 'Fade-To-Black.webm']) %>
+        <!-- <video autoplay loop class="fillWidth">
             <source src="/assets/Fade-To-Black.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
             <source src="/assets/Fade-To-Black.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
-        </video>
+        </video> -->
         <div class="poster hidden">
-            <img src="/assets/Fade-To-Black.jpeg" alt="">
+            <img src="Fade-To-Black.jpeg" alt="">
         </div>
     </div>
 </div>
@@ -33,9 +34,10 @@
     <h2>ARJINDIS EVENTS HAS SOMETHING FOR EVERYONE</h2>
 
     <h4>One way to get the most out of life is to look upon it as an adventure. - <i>William Feather</i></h4>
-    
+
     <%= link_to '<button type="button" name="button" class="explore-section-button">BROWSE ALL EVENTS</button>'.html_safe, occasions_path %>
   </div>
 
-  <img src="/assets/home-explore.jpg" class="explore-image"/>
+  <%= image_tag 'home-explore.jpg', :class => 'explore-image' %>
+<!-- <img src="/assets/home-explore.jpg" class="explore-image"/> -->
 </section>

@@ -1,6 +1,7 @@
 <h1>All Events </h1>
 
 <% @occasions.each do |occasion| %>
+      <img src='<%= occasion.image %>' alt="some_text" style="width:width;height:height;">
       <h2><%= occasion.title %></h2>
       <div><%= truncate(occasion.description, :length => 80) %></div>
       <!-- show only a snip of the full length of description to 40 charactors -->
