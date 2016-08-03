@@ -15,14 +15,7 @@ class OccasionsController < ApplicationController
         #creating an img cariable to get images
         image = event['images']['images'][0]['transforms']['transforms'][-1]['url']
         if occasion.nil?
-<<<<<<< HEAD
           Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :eventfinda_id => event['id'], :address => event['address'], :location => event['location_summary'], :image => image
-=======
-
-          Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :image => image, :eventfinda_id => event['id'], :address => event['address'], :location => event['location_summary']
-          #fetching  API data and saving to database(.create), renaming attribute names of API event data
-
->>>>>>> 5722c7a76d72ab7e6e99ac1170bad313b9de1062
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
