@@ -42,13 +42,13 @@
             }
         }
         .submit {
-            background-color: $p-color !important;
+            background-color: $button-red !important;
             color: $white;
             border: none;
             &:hover {
                 background-color: $white !important;
-                color: $p-color;
-                border: 1px solid $p-color;
+                color: $button-red;
+                border: 1px solid $button-red;
             }
         }
         /* Label */
@@ -70,7 +70,7 @@
         transform: scale(.75);
         left: -2px;
         /* font-size: 14px; */
-        color: $p-color;
+        color: $button-red;
     }
     /* Underline */
     .bar {
