@@ -1,50 +1,43 @@
-<div id="disqus_thread"></div>
-<script>
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-
-        s.src = '//https-eventsltx-herokuapp-com-1.disqus.com/embed.js';
-
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
 <div class="occasion-wrapper container">
   <main>
     <h1 class="occasion-heading"><%= @occasion.title %></h1>
-
-    <div class="row">
-      <div class="col-md-7">
-        <figure>
-          <img src='<%= @occasion.image %>' class="occasion-image">
-          <% unless @occasion.cloudinary_image.nil? %>
-            <%= cl_image_tag(@occasion.cloudinary_image) %> <%# to display cloudinary image %>
-          <% end %>
-        </figure>
-
-        <section class="description-section">
-          <h3>Description</h3>
-          <p><%=@occasion.description  %></br></p>
-        </section>
-
-        <section class="details-section">
-          <h3>Details</h3>
-          <p><strong>Start Date: </strong><%=@occasion.date_start %></p>
-          <p><strong>End Date: </strong><%=@occasion.date_end %></p>
-        </section>
-
-        <section class="map-section">
-          <h3>Location</h3>
+      <div class="row">
+        <div class="col-md-7">
+          <figure>
+            <img src='<%= @occasion.image %>' class="occasion-image">
+              <% unless @occasion.cloudinary_image.nil? %>
+              <%= cl_image_tag(@occasion.cloudinary_image) %>
+              <%# to display cloudinary image %>
+              <% end %>
+          </figure>
+          <section class="description-section">
+            <h3>Description</h3>
+            <p><%=@occasion.description  %></p>
+          </section>
+          <section class="details-section">
+              <h3>Details</h3>
+              <p>
+              <strong>Start Date:
+              </strong><%=@occasion.date_start %></p>
+              <p>
+              <strong>End Date:
+              </strong><%=@occasion.date_end %></p>
+          </section>
+          <section class="map-section">
+            <h3>Location</h3>
 
           <% if @occasion.address != nil %>
-           <p><strong>Address: </strong><%= @occasion.address %></p>
+            <p>
+              <strong>Address:
+              </strong><%= @occasion.address %>
+            </p>
           <% end %>
           <% if @occasion.location != nil %>
-            <p><strong>Location: </strong><%= @occasion.location %></p>
+            <p>
+              <strong>Location:
+              </strong><%= @occasion.location %>
+            </p>
           <% end %>
-
           <div id="map" class="map"></div>
             <script>
               var myLatLng = {lat: <%= @occasion.latitude %>, lng: <%= @occasion.longitude %>};
@@ -64,5 +57,66 @@
         <%= link_to " edit ", edit_occasion_path(@occasion) %>
         <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
       </nav>
-    </div>
-  </main>
+      </div>
+    </section>
+  </div><!-- end col-md-7 -->
+</div><!-- end row -->
+</div><!-- end container -->
+</main>
+
+<% if (@occasion.date_start < Date.today+16.days)%>
+
+<div id="weatherinfo">
+<p>main:
+<span id="mainS"></span>
+</p>
+<p>weather:
+<span id="weatherS"></span>
+</p>
+<p>temp:
+<span id="tempS"></span>
+</p>
+<p>humidity:
+<span id="humidityS"></span>
+</p>
+<p>wind speed:
+<span id="windspeedS"></span>
+</p>
+<p>IMG:
+<img id=weatherImg src="" alt=""></p>
+
+</div>
+
+<script type="text/javascript">
+days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
+weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
+</script>
+
+<% end %>
+
+<div id="disqus_thread"></div>
+
+</div>
+<% unless @occasion.cloudinary_image.nil? %>
+<div>
+<%= cl_image_tag(@occasion.cloudinary_image) %>
+<%# to display cloudinary image %>
+
+</div>
+<% end %>
+
+<%= link_to " edit ", edit_occasion_path(@occasion) %>
+<%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+
+<%# those are variables we need to use in javascript %>
+<script>
+var myLatLng = {
+    lat: <%= @occasion.latitude %>,
+    lng: <%= @occasion.longitude %>
+};
+</script>
+<!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap" async defer></script>
+<script>
+
+<%# CONTENT FOR CALENDER, SEARCH ETC %>
