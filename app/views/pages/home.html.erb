@@ -2,13 +2,13 @@
 <!-- DIV 1: VIDEO -->
 
 <div class="homepage-hero-module">
-  <div class="title-container">
-    <div class="headline">
-      <h1 class="video-heading">love every second</h1>
-      <h3 class="video-subheading">Create &amp; Explore Reviews Of Your Favourite Events</h3>
-    </div>
+    <div class="title-container">
+        <div class="headline">
+            <h1 class="video-heading">love every second</h1>
+            <h3 class="video-subheading">Create &amp; Explore Reviews Of Your Favourite Events</h3>
+        </div>
 
-  </div>
+    </div>
     <div class="video-container">
         <div class="filter"></div>
         <%= video_tag (['Fade-To-Black.mp4', 'Fade-To-Black.webm']) %>
@@ -17,27 +17,47 @@
             <source src="/assets/Fade-To-Black.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
         </video> -->
         <div class="poster hidden">
-          <%= image_tag 'Fade-To-Black.jpeg' %>
+            <%= image_tag 'Fade-To-Black.jpeg' %>
         </div>
     </div>
 </div>
-
 <!-- ####################################################################### -->
+<!-- DIV : CALENDAR -->
+<div class="container">
+    <div class="row">
+        <section class="col-xs-12 col-md-6 calendar">
+            <%= month_calendar events: @occasions, attribute: :date_start do |date, occasions| %>
+            <%= date.strftime '%d' %> <%# #to show only the day %>
+
+            <% occasions.each do |occasion| %>
+            <div id="event-calendar" class="event">
+                <%=link_to occasion.title, occasion %>
+            </div>
+            <% end %>
+            <% end %>
+        </section>
+
+    <div class="col-xs-12 col-md-6 show-calendar"></div>
+</div>
+
+</div>
+<!-- ############################################################### -->
 <!-- DIV 2: CONTENT -->
 
 <section class="homepage-content">
-  <div class="content-section">
+<div class="content-section">
     <h1>FIND YOUR ADVENTURE</h1>
-
-  </div>
-  <div class="photo-section">
+</div>
+<div class="photo-section">
     <h2>ARJINDIS EVENTS HAS SOMETHING FOR EVERYONE</h2>
 
-    <h4>One way to get the most out of life is to look upon it as an adventure. - <i>William Feather</i></h4>
+    <h4>One way to get the most out of life is to look upon it as an adventure. -
+        <i>William Feather</i>
+    </h4>
 
     <%= link_to '<button type="button" name="button" class="explore-section-button">BROWSE ALL EVENTS</button>'.html_safe, occasions_path %>
-  </div>
+</div>
 
-  <%= image_tag 'home-explore.jpg', :class => 'explore-image' %>
+<%= image_tag 'home-explore.jpg', :class => 'explore-image' %>
 <!-- <img src="/assets/home-explore.jpg" class="explore-image"/> -->
 </section>
