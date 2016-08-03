@@ -1,13 +1,58 @@
-<h1><%= @occasion.title %></h1>
-<img src='<%= @occasion.image %>' alt="some_text" style="width:width;height:height;">
-<div>
-    <%=@occasion.description  %></br>
-<%=@occasion.date_start  %></br>
-<%=@occasion.date_end  %></br>
-<%# @occasion.date_end.strftime("%e %b") %>
-<%= @occasion.address %></br>
-<%=@occasion.location  %></br>
-<div id="map" class="map"></div>
+<div class="occasion-wrapper container">
+  <main>
+    <h1 class="occasion-heading"><%= @occasion.title %></h1>
+      <div class="row">
+        <div class="col-md-7">
+          <figure>
+            <img src='<%= @occasion.image %>' class="occasion-image">
+              <% unless @occasion.cloudinary_image.nil? %>
+              <%= cl_image_tag(@occasion.cloudinary_image) %>
+              <%# to display cloudinary image %>
+              <% end %>
+          </figure>
+          <section class="description-section">
+            <h3>Description</h3>
+            <p><%=@occasion.description  %></p>
+          </section>
+          <section class="details-section">
+              <h3>Details</h3>
+              <p>
+              <strong>Start Date:
+              </strong><%=@occasion.date_start %></p>
+              <p>
+              <strong>End Date:
+              </strong><%=@occasion.date_end %></p>
+          </section>
+          <section class="map-section">
+            <h3>Location</h3>
+
+          <% if @occasion.address != nil %>
+            <p>
+              <strong>Address:
+              </strong><%= @occasion.address %>
+            </p>
+          <% end %>
+          <% if @occasion.location != nil %>
+            <p>
+              <strong>Location:
+              </strong><%= @occasion.location %>
+            </p>
+          <% end %>
+          <div id="map" class="map"></div>
+          </section>
+        </div><!-- end col-md-7 -->
+      </div><!-- end row -->
+      </div><!-- end container -->
+  </main>
+
+
+
+  ____________________----------------------
+  ____________________----------------------
+  ____________________----------------------
+  ____________________----------------------
+____________________----------------------
+
 <% if (@occasion.date_start < Date.today+16.days)%>
 
 <div id="weatherinfo">
@@ -79,71 +124,4 @@ var disqus_config = function () {
 <noscript>Please enable JavaScript to view the
 <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
-=======
-<div class="occasion-wrapper container">
-<main>
-<h1 class="occasion-heading"><%= @occasion.title %></h1>
-
-<div class="row">
-<div class="col-md-7">
-<figure>
-<img src='<%= @occasion.image %>' class="occasion-image">
-<% unless @occasion.cloudinary_image.nil? %>
-<%= cl_image_tag(@occasion.cloudinary_image) %>
-<%# to display cloudinary image %>
-<% end %>
-</figure>
-
-<section class="description-section">
-<h3>Description</h3>
-<p><%=@occasion.description  %></br>
-</p>
-</section>
-
-<section class="details-section">
-<h3>Details</h3>
-<p>
-<strong>Start Date:
-</strong><%=@occasion.date_start %></p>
-<p>
-<strong>End Date:
-</strong><%=@occasion.date_end %></p>
-</section>
-
-<section class="map-section">
-<h3>Location</h3>
-
-<% if @occasion.address != nil %>
-<p>
-<strong>Address:
-</strong><%= @occasion.address %></p>
-<% end %>
-<% if @occasion.location != nil %>
-<p>
-<strong>Location:
-</strong><%= @occasion.location %></p>
-<% end %>
-
-<div id="map" class="map"></div>
-<script>
-var myLatLng = {
-    lat: <%= @occasion.latitude %>,
-    lng: <%= @occasion.longitude %>
-};
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap" async defer></script>
-
-<!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
-</div>
-</section>
-</div>
-
-<div class="col-md-5">
 <%# CONTENT FOR CALENDER, SEARCH ETC %>
-</div>
-<nav>
-<%= link_to " edit ", edit_occasion_path(@occasion) %>
-<%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
-</nav>
-</div>
-</main>
