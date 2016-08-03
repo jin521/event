@@ -22,6 +22,8 @@ class Occasion < ActiveRecord::Base
     has_many :users, :through => :rsvp
     has_many :rsvps
 
+    validates :date_start, :presence => true
+
     geocoded_by :location   #using geocoder to convert location into coordinates
     after_validation :geocode
 
