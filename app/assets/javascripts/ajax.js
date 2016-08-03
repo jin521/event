@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+
+  // search weather
   $('#generate').on('click', function (e) {
 
     e.preventDefault(); // Don't submit this form for me, I'll do with AJAX
@@ -13,4 +15,20 @@ $(document).ready(function () {
       $('#windspeed').append(response.wind["speed"]);
    });
  });
+
+
+ $('#rsvp_create').on('click', function (e) {
+
+  var rsvpURL = $(e.target).attr('url');
+  console.log(rsvpURL);
+   $.ajax(rsvpURL).done(function (response) {
+        console.log("HERE", response);
+        //  debugger;
+      }).fail(function(){
+         console.log('failed');
+  });
+});
+
+
+
 });

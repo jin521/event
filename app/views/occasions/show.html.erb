@@ -21,13 +21,19 @@
 </div>
 <% end %>
 
+<% if current_user.present?%>
+    <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
+
+<% else %>
+    <%= link_to "Log in to save this event", user_session_path %>
+<% end %>
+
+
 <%= link_to " edit ", edit_occasion_path(@occasion) %>
 <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
 
 
 <!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
-
-
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap"
           async defer></script>
