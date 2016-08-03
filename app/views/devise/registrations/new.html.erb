@@ -21,13 +21,11 @@
       </div>
 
       <div class="field group">
-
         <% if @minimum_password_length %>
-
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-        <span class="highlight"></span><span class="bar"></span>
-        <%= f.label :password, "Password (#{@minimum_password_length} characters minimum)" %>
+          <%= f.password_field :password, autocomplete: "off" %>
+          <span class="highlight"></span><span class="bar"></span>
+          <%= f.label :password, "Password (#{@minimum_password_length} characters minimum)" %>
+        <% end %>
       </div>
 
       <div class="field group">
