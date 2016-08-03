@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require jquery-ui/datepicker
 //= require_tree .
 
 //jQuery is required to run this code
@@ -30,6 +30,9 @@ $( document ).ready(function() {
         scaleBannerVideoSize('.video-container .filter');
         scaleBannerVideoSize('.video-container video');
     });
+
+
+  $('.datepicker').datepicker();
 
 });
 

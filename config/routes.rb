@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
-  get 'feeds/index'
+  devise_for :users, :path => 'accounts', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 
-  get 'feeds/show'
-
-  devise_for :users
   root :to => 'pages#home'
-  resources :users
+
   resources :occasions
+  resources :users
 
+  get 'feeds/index'
+  get 'feeds/show'
   get '/feed' => 'feeds#index'
-
 
   get 'search' => 'occasions#search', as: 'search'
   get 'search_results' => 'occasions#search_results', as: 'search_results'
-
 end

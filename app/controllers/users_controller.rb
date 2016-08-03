@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    
+
   end
 
   def new
@@ -10,5 +10,10 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name,:password,:email,:admin)
   end
 end
