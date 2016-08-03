@@ -7,7 +7,7 @@
   <%=@occasion.date_end  %></br>   <%# @occasion.date_end.strftime("%e %b") %>
   <%= @occasion.address %></br>
   <%=@occasion.location  %></br>
-  <div id="map" style="width:600px;height:400px"></div>
+  <div id="map" class="map"></div>
   <script>
     var myLatLng = {lat: <%= @occasion.latitude %>, lng: <%= @occasion.longitude %>};
   </script>
