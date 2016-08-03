@@ -16,12 +16,6 @@ ActiveRecord::Schema.define(version: 20160802050225) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "feeds", force: :cascade do |t|
-    t.string "title"
-    t.string "url"
-    t.string "status"
-  end
-
   create_table "occasions", force: :cascade do |t|
     t.string   "title"
     t.string   "image"
@@ -34,12 +28,12 @@ ActiveRecord::Schema.define(version: 20160802050225) do
     t.string   "phone"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "user_id"
     t.datetime "date_start"
     t.datetime "date_end"
     t.integer  "eventfinda_id"
     t.string   "cloudinary_image"
     t.string   "address"
-    t.integer  "user_id"
   end
 
   create_table "rsvps", force: :cascade do |t|
