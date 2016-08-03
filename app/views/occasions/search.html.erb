@@ -20,3 +20,18 @@
     <%= text_field_tag 'search_date_to', nil, placeholder: 'end date', class:'datepicker'%> <%# make the class to be datepicker so jquery-ui-picker can take place %>
     <%= submit_tag "search" %>
     <% end %>
+
+
+
+<!-- search weather by entering city name  -->
+     <form>
+      <p>Enter City name to find weather</p>
+      <input id="weatherfinder" placeholder="enter city name here">
+      <button id="generate" type="submit">Find current weather</button>
+    </form>
+    <div id= "weatherinfo">
+      <div ><p>weather: <span id = "weather"></span></p></div>
+      <div ><p>temp: <span id = "temp"></span></p></div>
+      <div ><p>humidity: <span id = "humidity"></span></p></div>
+      <div ><p>wind speed: <span id = "windspeed"></span></p></div>
+    </div>
