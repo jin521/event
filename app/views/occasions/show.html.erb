@@ -73,6 +73,7 @@
       <% end %>
         </div><!-- end col-md-5 side bar -->
       </div><!-- end row -->
+
       <div id="disqus_thread"></div>
       <% if current_user.present?%>
           <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
@@ -90,6 +91,7 @@
 <%# ############################## JAVASCRIPT for the APIS ####################################### %>
 <%# ############################################################################################## %>
 <%# ############################################################################################## %>
+
 <%# those are variables we need to use in javascript %>
 <script>
 var myLatLng = {
