@@ -105,6 +105,14 @@ weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasio
 </div>
 <% end %>
 
+<% if current_user.present?%>
+    <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
+
+<% else %>
+    <%= link_to "Log in to save this event", user_session_path %>
+<% end %>
+
+
 <%= link_to " edit ", edit_occasion_path(@occasion) %>
 <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
 
@@ -118,5 +126,24 @@ var myLatLng = {
 <!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap" async defer></script>
 <script>
+
+=======
+
+var disqus_config = function () {
+    this.page.url = '<%= occasion_url(@occasion) %>'; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = '<%= @occasion.id %>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function () { // DON'T EDIT BELOW THIS LINE
+    var d = document,
+        s = d.createElement('script');
+    s.src = '//https-eventsltx-herokuapp-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', + new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
 
 <%# CONTENT FOR CALENDER, SEARCH ETC %>
