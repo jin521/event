@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
   // search weather
 var getWeatherAt = function(days_from_now, lat, long){
   if(days_from_now < 0 ){
