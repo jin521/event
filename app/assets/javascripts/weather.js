@@ -2,40 +2,6 @@ $(document).ready(function () {
 
 
   // search weather
-  $('#generate').on('click', function (e) {
-
-    e.preventDefault(); // Don't submit this form for me, I'll do with AJAX
-    var $city = $('#weatherfinder').val();
-    var URL = 'http://api.openweathermap.org/data/2.5/weather?q=' + $city + '&units=metric' + '&mode=JSON'+'&APPID=bf5017448e9d946e404e311eeb7504bf'; //using  API 'openweathermap'
-    $.ajax(URL).done(function (response) { // onreadystatechange with readystate === 4
-
-      $('#weather').append(response.weather[0]["description"]);
-      $('#temp').append(response.main["temp"]);
-      $('#humidity').append(response.main["humidity"]);
-      $('#windspeed').append(response.wind["speed"]);
-   });
- });
-
-
- $('#rsvp_create').on('click', function (e) {
-
-  var rsvpURL = $(e.target).attr('url');
-  //.target is the button itself, we are grabing the url attribute is set in the button helper on  show.html.erb
-
-   $.ajax(rsvpURL).done(function (response) {
-    //  console.log("HERE", response, response.status);
-     if (response.action === 'rsvp') {
-       $('#rsvp_create').removeClass('glyphicon-heart-empty').addClass("glyphicon-heart");
-     }else if (response.action === 'unrsvp'){
-       $('#rsvp_create').removeClass('glyphicon-heart').addClass("glyphicon-heart-empty");
-     }
-  });
-});
-
-
-
-});
-
 var getWeatherAt = function(days_from_now, lat, long){
   if(days_from_now < 0 ){
     days_from_now = 0;
@@ -61,18 +27,22 @@ var getWeatherAt = function(days_from_now, lat, long){
         $('#minTempW').append(event_day_weather.temp.min.toFixed(0));
         $('#descriptionW').append(event_day_weather.weather[0]['description']);
 
-
-
-
-
-
-
-
-
-        // $('#weatherS').append(event_day_weather);
-        // $('#temp').append(response.main["temp"]);
-        // $('#humidity').append(response.main["humidity"]);
-        // $('#windspeed').append(response.wind["speed"]);
   });
+
+
+ $('#rsvp_create').on('click', function (e) {
+
+  var rsvpURL = $(e.target).attr('url');
+  //.target is the button itself, we are grabing the url attribute is set in the button helper on  show.html.erb
+
+   $.ajax(rsvpURL).done(function (response) {
+    //  console.log("HERE", response, response.status);
+     if (response.action === 'rsvp') {
+       $('#rsvp_create').removeClass('glyphicon-heart-empty').addClass("glyphicon-heart");
+     }else if (response.action === 'unrsvp'){
+       $('#rsvp_create').removeClass('glyphicon-heart').addClass("glyphicon-heart-empty");
+     }
+  });
+});
 
 };
