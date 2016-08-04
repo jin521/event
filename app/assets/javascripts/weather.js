@@ -40,10 +40,20 @@ $(document).ready(function () {
     //  console.log("HERE", response, response.status);
      if (response.action === 'rsvp') {
        $('#rsvp_create').removeClass('glyphicon-heart-empty').addClass("glyphicon-heart");
+
      }else if (response.action === 'unrsvp'){
        $('#rsvp_create').removeClass('glyphicon-heart').addClass("glyphicon-heart-empty");
+
      }
   });
 });
+
+    $("#rsvp_create").hover(function() {
+          $(this).css('cursor','pointer').attr('title', 'Save or remove this event');
+      }, function() {
+       $(this).css('cursor','auto');
+   });
+
+
 
 });

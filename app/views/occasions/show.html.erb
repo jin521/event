@@ -1,6 +1,26 @@
 <div class="occasion-wrapper container">
   <main>
-    <h1 class="occasion-heading"><%= @occasion.title %></h1>
+
+<section>
+     <%# #####rsvp /save events to user's account###### %>
+    <% if current_user.present?%>
+
+    <% if @rsvp.present? %>
+      <% button_class = 'glyphicon glyphicon-heart' %>
+    <% else %>
+      <% button_class = 'glyphicon glyphicon-heart-empty' %>
+    <% end %>
+    <%= button_tag  ' ', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
+
+
+    <% else %>
+        <%= link_to "Log in to save this event", user_session_path %>
+    <% end %>
+</section>
+
+
+  <h1 class="occasion-heading"><%= @occasion.title %></h1>
+
       <div class="row">
         <div class="col-md-7 show-events">
           <figure>
@@ -23,22 +43,29 @@
               <p>
               <strong>End Date and time:
               </strong><%=@occasion.date_end %></p>
+              <p>
+
+              <strong>Website: </strong>
+              <% if @occasion.website != nil %>
+              <%=@occasion.website %></p>
+              <% end %>
+
+
+              <p><strong>Phone:</strong>
+              <% if @occasion.phone != nil %>
+              <%=@occasion.phone %></p>
+              <% end  %>
+
+
+              <p><strong>Price:</strong>
+              <% if @occasion.price =="true" %>
+              <%="free event" %></p>
+              <% end  %>
+
 
           </section>
           <section class="map-section occasion-section">
             <h3>Location</h3>
-
-          <% if @occasion.website != nil %>
-          <p>
-          <strong>Website:
-          </strong><%=@occasion.website %></p>
-          <% end %>
-
-          <% if @occasion.phone != nil %>
-          <p>
-          <strong>Phone:
-          </strong><%=@occasion.phone %></p>
-          <% end  %>
 
           <% if @occasion.address != nil %>
             <p>
@@ -89,24 +116,10 @@
 
       <div id="disqus_thread"></div>
 
-      <% if current_user.present?%>
-
-
-      <% if @rsvp.present? %>
-        <% button_class = 'glyphicon glyphicon-heart' %>
-      <% else %>
-        <% button_class = 'glyphicon glyphicon-heart-empty' %>
-      <% end %>
-      <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
-
-
-      <% else %>
-          <%= link_to "Log in to save this event", user_session_path %>
-      <% end %>
-
 
       <%= link_to " edit ", edit_occasion_path(@occasion) %>
       <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+
     </main>
 </div><!-- end container -->
 <%# ############################################################################################## %>

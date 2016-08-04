@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804011044) do
+ActiveRecord::Schema.define(version: 20160804081820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160804011044) do
     t.string   "cloudinary_image"
     t.string   "address"
     t.integer  "user_id"
+    t.integer  "price"
+
   end
 
   create_table "rsvps", force: :cascade do |t|
