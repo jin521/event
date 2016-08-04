@@ -44,11 +44,11 @@ class OccasionsController < ApplicationController
 
   def show
     @occasion = Occasion.find(params[:id])
-
-    user_id = current_user.id  # from session
-    @rsvp = Rsvp.find_by(occasion_id: @occasion.id, user_id: user_id)
-
-
+    @occasions = Occasion.all.order("created_at DESC")
+    unless current_user.nil?
+      user_id = current_user.id  # from session
+      @rsvp = Rsvp.find_by(occasion_id: @occasion.id, user_id: user_id)
+    end
   end
 
   def edit

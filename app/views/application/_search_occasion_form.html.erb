@@ -1,3 +1,4 @@
+<div class="search-occasion-form">
 <!-- search by keywords -->
   <%= form_tag search_results_path, method: 'get' do %>
     <%= text_field_tag :search_keywords, nil, placeholder: "enter keyword" %>
@@ -18,3 +19,4 @@
     <%= text_field_tag 'search_date_to', nil, placeholder: 'end date', class:'datepicker'%> <%# make the class to be datepicker so jquery-ui-picker can take place %>
     <%= submit_tag "search", :class =>'submit' %>
     <% end %>
+</div>
