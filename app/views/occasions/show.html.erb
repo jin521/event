@@ -32,11 +32,14 @@
           <p>
           <strong>Website:
           </strong><%=@occasion.website %></p>
+          <% end %>
 
           <% if @occasion.phone != nil %>
           <p>
           <strong>Phone:
           </strong><%=@occasion.phone %></p>
+          <% end  %>
+
           <% if @occasion.address != nil %>
             <p>
               <strong>Address:
@@ -85,8 +88,17 @@
       </div><!-- end row -->
 
       <div id="disqus_thread"></div>
+
       <% if current_user.present?%>
-          <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
+
+
+      <% if @rsvp.present? %>
+        <% button_class = 'glyphicon glyphicon-heart' %>
+      <% else %>
+        <% button_class = 'glyphicon glyphicon-heart-empty' %>
+      <% end %>
+      <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
+
 
       <% else %>
           <%= link_to "Log in to save this event", user_session_path %>

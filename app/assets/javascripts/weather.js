@@ -23,7 +23,7 @@ $(document).ready(function () {
   //.target is the button itself, we are grabing the url attribute is set in the button helper on  show.html.erb
 
    $.ajax(rsvpURL).done(function (response) {
-    //  console.log("HERE", response, response.status);
+     console.log("HERE", response, response.status);
      if (response.action === 'rsvp') {
        $('#rsvp_create').removeClass('glyphicon-heart-empty').addClass("glyphicon-heart");
      }else if (response.action === 'unrsvp'){
