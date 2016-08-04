@@ -45,10 +45,37 @@
           <%= render 'search_occasion_form' %>
           <%= render 'calendar'%>
         </div><!-- end col-md-5 side bar -->
-      </div><!-- end row -->
-      </div><!-- end container -->
-  </main>
+        <div class="col-md-offset-7 col-md-5"></div>
+        <section class="weather-section" id="weatherinfo">
+          <h3>Weather</h3>
+          <h2>
+            <img id=weatherImg src="" alt="">
+            <span id="mainS"></span>
+          </h2>
 
+
+          <p>main:
+
+          </p>
+          <p>weather:
+            <span id="weatherS"></span>
+          </p>
+          <p>temp  :
+          <span id="tempS"></span>
+          </p>
+          <p>humidity:
+            <span id="humidityS"></span>
+          </p>
+          <p>wind speed:
+            <span id="windspeedS"></span>
+          </p>
+          <p>IMG:
+            <img id=weatherImg src="" alt=""></p>
+        </section>
+      </div><!-- end row -->
+      <div id="disqus_thread"></div>
+    </main>
+</div><!-- end container -->
 
 
   ____________________----------------------
@@ -86,9 +113,9 @@ weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasio
 
 <% end %>
 
-<div id="disqus_thread"></div>
 
-</div>
+
+
 <%= link_to " edit ", edit_occasion_path(@occasion) %>
 <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
 <%# ############################################################################################## %>
