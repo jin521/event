@@ -19,6 +19,9 @@
         <%= f.label :email %>
       </div>
 
+<%# Will only diplsay the password fields if the user password is required i.e will be hidden if a user signs in via twitter %>
+
+    <%# <% if f.object.password_required? %>
       <div class="field group">
         <% if @minimum_password_length %>
           <%= f.password_field :password, autocomplete: "off" %>
@@ -31,8 +34,8 @@
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
         <span class="highlight"></span><span class="bar"></span>
         <%= f.label :password_confirmation %>
-
       </div>
+    <%# <% end %>
 
       <div class="actions">
         <%= f.submit "Sign up", :class =>'submit' %>

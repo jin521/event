@@ -42,6 +42,7 @@
                   <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> Log Out'.html_safe, destroy_user_session_path, :method => :delete %></li>
                 <% else %>
                   <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Login'.html_safe, user_session_path %></li>
+                  <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Twitter Login'.html_safe, user_omniauth_authorize_path(:twitter) %></li>
                   <li><%= link_to '<span class="glyphicon glyphicon-user"></span> Sign Up'.html_safe, new_user_registration_path %></li>
                 <% end %>
               </ul>

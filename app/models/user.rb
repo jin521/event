@@ -26,9 +26,36 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :occasions
   has_many :rsvps
+
+  # Trying to find a user with a given provider and uid which matches the omniauth hash. If one isnt found, a new user will be created with the below attirbutes i.e. the nickname provided by twitter will be set to the username
+
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid).permit!).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.username = auth.info.nickname
+    end
+  end
+
+  # Set the attributes back on the model and display it on the sign up page. Creates a new user record based on the given sessions details.
+  def self.new_with_session(params, session)
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"], without_protection: true) do |user|
+        user.attribtues = params
+        user.valid? #display any validation errors
+      end
+    else
+      super # Will go back to normal devise behavour i.e. create a new user instance
+    end
+  end
+
+  # This method ensure that a password isnt required when a user signs in through twitter
+  def password_required
+    super && provider.blank?
+  end
 end
