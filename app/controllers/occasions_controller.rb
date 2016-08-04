@@ -44,6 +44,8 @@ class OccasionsController < ApplicationController
 
   def show
     @occasion = Occasion.find(params[:id])
+    @occasions = Occasion.all.order("created_at DESC")
+
 
   end
 
@@ -77,9 +79,11 @@ class OccasionsController < ApplicationController
   end
 
   def search #displays search forms
+    @occasions = Occasion.all.order("created_at DESC")
   end
 
   def search_results # displays search results
+    @occasions = Occasion.all.order("created_at DESC")
     # raise 'hell'
     if params.has_key?("search_location")  #"search_location" is the id of this search from, has.key? means is this search form is filled out
       # raise 'hell'

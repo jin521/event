@@ -25,19 +25,13 @@
 <!-- DIV : CALENDAR -->
 <div class="container">
     <div class="row">
-        <section class="col-xs-12 col-md-6 calendar">
-            <%= month_calendar events: @occasions, attribute: :date_start do |date, occasions| %>
-            <%= date.strftime '%d' %> <%# #to show only the day %>
-
-            <% occasions.each do |occasion| %>
-            <div id="event-calendar" class="event">
-                <%=link_to occasion.title, occasion %>
-            </div>
-            <% end %>
-            <% end %>
+        <section class="col-xs-12 col-md-6">
+          <%= render 'calendar' %>
         </section>
 
-    <div class="col-xs-12 col-md-6 show-calendar"></div>
+        <section class="col-xs-12 col-md-6">
+          <%= render 'show_events_from_calendar' %>
+        </section>
 </div>
 
 </div>
