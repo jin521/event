@@ -1,9 +1,8 @@
 <div class="occasion-wrapper container">
   <main>
-    <h1 class="occasion-heading"><%= @occasion.title %> </h1>
 
+<section>
      <%# #####rsvp /save events to user's account###### %>
-    <h3>
     <% if current_user.present?%>
 
     <% if @rsvp.present? %>
@@ -11,14 +10,17 @@
     <% else %>
       <% button_class = 'glyphicon glyphicon-heart-empty' %>
     <% end %>
-    <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
+    <%= button_tag  ' ', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
 
 
     <% else %>
         <%= link_to "Log in to save this event", user_session_path %>
     <% end %>
+</section>
 
-</h3>
+
+  <h1 class="occasion-heading"><%= @occasion.title %></h1>
+
       <div class="row">
         <div class="col-md-7 show-events">
           <figure>
@@ -64,9 +66,6 @@
           </section>
           <section class="map-section occasion-section">
             <h3>Location</h3>
-
-
-
 
           <% if @occasion.address != nil %>
             <p>
@@ -118,10 +117,9 @@
       <div id="disqus_thread"></div>
 
 
-
-
       <%= link_to " edit ", edit_occasion_path(@occasion) %>
       <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+
     </main>
 </div><!-- end container -->
 <%# ############################################################################################## %>
@@ -141,7 +139,7 @@ var myLatLng = {
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(){  
+$(document).ready(function(){
   days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
   weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
 });
