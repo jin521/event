@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Event</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= cloudinary_js_config %>
-</head>
-<body>
-
-  <%= render "layouts/header" %>
-
-<div class="yield-wrapper">
-  <!-- The are flash messages for the devise (authentication) gem
+    <head>
+        <title>Event</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <%= cloudinary_js_config %>
+    </head>
+    <body>
+        <%= render "layouts/header" %>
+        <div class="yield-wrapper">
+            <!-- The are flash messages for the devise (authentication) gem
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
   -->
+            <%= yield %>
 
-  <%= yield %>
+        </div>
+        <%= render "layouts/footer" %>
 
-</div>
-
-
-<%= render "layouts/footer" %>
-
-</body>
+    </body>
 </html>
