@@ -44,3 +44,4 @@ var getWeatherAt = function(days_from_now, lat, long){
 });
 
 };
+});
