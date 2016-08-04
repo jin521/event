@@ -101,7 +101,11 @@ weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasio
   <% else %>
      <% button_class = 'glyphicon glyphicon-heart-empty' %>
   <% end %>
-  <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), unrsvp_url: unrsvp_url(@occasion), class: button_class %>
+  <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
+<!-- , unrsvp_url: unrsvp_url(@occasion) -->
+
+
+
 <% else %>
       <%= link_to "Log in to save this event", user_session_path %>
 <% end %>
