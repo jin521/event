@@ -115,8 +115,7 @@
 <%# ############################################################################################## %>
 
 
-<%# This is code for the weather API to work, have a look to the weather.js %>
-
+<%# this is for the map to get latitude and longitude %>
 <script type="text/javascript">
 <%# those are variables we need to use in javascript %>
 var myLatLng = {
@@ -124,9 +123,9 @@ var myLatLng = {
     lng: <%= @occasion.longitude %>
 };
 </script>
-
+<%# This is code for the weather API to work, have a look to the weather.js %>
 <script type="text/javascript">
-$(document).ready(function(){  
+$(document).ready(function(){
   days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
   weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
 });

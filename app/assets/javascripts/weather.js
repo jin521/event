@@ -1,4 +1,5 @@
 // search weather
+// it needs to load before document ready that is the reason it is outside
 var getWeatherAt = function(days_from_now, lat, long){
   if(days_from_now < 0 ){
     days_from_now = 0;
