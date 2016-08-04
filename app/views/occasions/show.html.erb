@@ -18,15 +18,25 @@
           <section class="details-section occasion-section">
               <h3>Details</h3>
               <p>
-              <strong>Start Date:
+              <strong>Start Date and time:
               </strong><%=@occasion.date_start %></p>
               <p>
-              <strong>End Date:
+              <strong>End Date and time:
               </strong><%=@occasion.date_end %></p>
+
           </section>
           <section class="map-section occasion-section">
             <h3>Location</h3>
 
+          <% if @occasion.website != nil %>
+          <p>
+          <strong>Website:
+          </strong><%=@occasion.website %></p>
+
+          <% if @occasion.phone != nil %>
+          <p>
+          <strong>Phone:
+          </strong><%=@occasion.phone %></p>
           <% if @occasion.address != nil %>
             <p>
               <strong>Address:
