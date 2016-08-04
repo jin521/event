@@ -1,0 +1,14 @@
+
+<p>you have saved below events</p>
+<div id="rsvpshow">
+<% @rsvps.each do |rsvp| %>
+  <!-- <%=rsvp.occasion.title %></br>
+  <%=rsvp.occasion.date_start %></br>
+  <%=rsvp.occasion.date_end %></br>
+  <%=rsvp.occasion.address %></br> -->
+ <!-- <a href="#"><%=rsvp.occasion.title %></a></br> -->
+  <%= link_to "#{rsvp.occasion.title} ", occasion_path(rsvp.occasion.id)%></br>
+  <% end %>
+</div>
+
+<h2><%= link_to "Back to all events", occasions_path %></h2>

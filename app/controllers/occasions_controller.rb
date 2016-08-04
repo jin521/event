@@ -102,6 +102,27 @@ class OccasionsController < ApplicationController
     end
   end
 
+  def rsvp
+    # raise 'hell'
+    user_id = current_user.id  # from session
+    occasion_id = params[:occasion_id]  # from url
+    Rsvp.create occasion_id: occasion_id, user_id: user_id
+    render json: "true", :status => 'ok'
+  end
+
+  def unrsvp
+    user_id = current_user.id  # from session
+    occasion_id = params[:occasion_id]  # from url
+    if Rsvp.find_by(occasion_id: occasion_id, user_id: user_id).destroy
+      render json: "true", :status => 'ok'
+    else
+      render json: "false", :status => 'ok'
+    end
+
+  end
+
+
+
   private
   def occasion_params
       params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
