@@ -26,7 +26,7 @@ var getWeatherAt = function(days_from_now, lat, long){
         $('#descriptionW').append(event_day_weather.weather[0]['description']);
 
   });
-
+};
 
  $('#rsvp_create').on('click', function (e) {
 
@@ -43,5 +43,5 @@ var getWeatherAt = function(days_from_now, lat, long){
   });
 });
 
-};
+
 });
