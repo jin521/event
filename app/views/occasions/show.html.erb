@@ -13,6 +13,7 @@
           <section class="description-section">
             <h3>Description</h3>
             <p><%=@occasion.description  %></p>
+
           </section>
           <section class="details-section">
               <h3>Details</h3>
@@ -95,10 +96,14 @@ weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasio
 <% end %>
 
 <% if current_user.present?%>
-    <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
-
+  <% if @rsvp.present? %>
+    <% button_class = 'glyphicon glyphicon-heart' %>
+  <% else %>
+     <% button_class = 'glyphicon glyphicon-heart-empty' %>
+  <% end %>
+  <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), unrsvp_url: unrsvp_url(@occasion), class: button_class %>
 <% else %>
-    <%= link_to "Log in to save this event", user_session_path %>
+      <%= link_to "Log in to save this event", user_session_path %>
 <% end %>
 
 
@@ -116,10 +121,11 @@ var myLatLng = {
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap" async defer></script>
 <script>
 
-<<<<<<< HEAD
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap"
           async defer></script>
-=======
+
+<%# ######## CODE FOR DISQUS ###### %>
+
 var disqus_config = function () {
     this.page.url = '<%= occasion_url(@occasion) %>'; // Replace PAGE_URL with your page's canonical URL variable
     this.page.identifier = '<%= @occasion.id %>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
@@ -137,4 +143,3 @@ var disqus_config = function () {
 <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>
 <%# CONTENT FOR CALENDER, SEARCH ETC %>
->>>>>>> ad98a9b48b69ec01468808e624b90a4d542d8f57
