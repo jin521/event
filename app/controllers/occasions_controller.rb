@@ -44,6 +44,7 @@ class OccasionsController < ApplicationController
 
   def show
     @occasion = Occasion.find(params[:id])
+
     user_id = current_user.id  # from session
     @rsvp = Rsvp.find_by(occasion_id: @occasion.id, user_id: user_id)
 

@@ -2,7 +2,7 @@
   <main>
     <h1 class="occasion-heading"><%= @occasion.title %></h1>
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-7 show-events">
           <figure>
             <img src='<%= @occasion.image %>' class="occasion-image">
               <% unless @occasion.cloudinary_image.nil? %>
@@ -10,12 +10,12 @@
               <%# to display cloudinary image %>
               <% end %>
           </figure>
-          <section class="description-section">
+          <section class="description-section occasion-section">
             <h3>Description</h3>
             <p><%=@occasion.description  %></p>
 
           </section>
-          <section class="details-section">
+          <section class="details-section occasion-section">
               <h3>Details</h3>
               <p>
               <strong>Start Date:
@@ -24,7 +24,7 @@
               <strong>End Date:
               </strong><%=@occasion.date_end %></p>
           </section>
-          <section class="map-section">
+          <section class="map-section occasion-section">
             <h3>Location</h3>
 
           <% if @occasion.address != nil %>
@@ -41,78 +41,56 @@
           <% end %>
           <div id="map" class="map"></div>
           </section>
-        </div><!-- end col-md-7 -->
+        </div><!-- end col-md-7 main content-->
+        <div class="col-md-5 calendar-show">
+          <%= render 'search_occasion_form' %>
+          <%= render 'calendar'%>
+<%#  To show the WEATHER DETAILS for every event. because our forecast is only 16 days ahead, we need to create an if statement to check if the event is happening in before and we can show the weather. %>
+      <% if (@occasion.date_start < Date.today+16.days)%>
+          <section class="weather-section occasion-section" id="weatherinfo">
+            <h3>Event Weather</h3>
+            <h2>
+              <img id=weatherImg src="" alt="">
+              <span id="mainW"></span>
+            </h2>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Description</td>
+                  <td><span id="descriptionW"></span></td>
+                </tr>
+                <tr>
+                  <td>Max Temp</td>
+                  <td><span id="maxTempW"></span> &#8451;</td>
+                </tr>
+                <tr>
+                  <td>Min Temp</td>
+                  <td><span id="minTempW"></span> &#8451;</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+      <% end %>
+        </div><!-- end col-md-5 side bar -->
       </div><!-- end row -->
-      </div><!-- end container -->
-  </main>
+
+      <div id="disqus_thread"></div>
+      <% if current_user.present?%>
+          <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
+
+      <% else %>
+          <%= link_to "Log in to save this event", user_session_path %>
+      <% end %>
 
 
-
-  ____________________----------------------
-  ____________________----------------------
-  ____________________----------------------
-  ____________________----------------------
-____________________----------------------
-
-<% if (@occasion.date_start < Date.today+16.days)%>
-
-<div id="weatherinfo">
-<p>main:
-<span id="mainS"></span>
-</p>
-<p>weather:
-<span id="weatherS"></span>
-</p>
-<p>temp:
-<span id="tempS"></span>
-</p>
-<p>humidity:
-<span id="humidityS"></span>
-</p>
-<p>wind speed:
-<span id="windspeedS"></span>
-</p>
-<p>IMG:
-<img id=weatherImg src="" alt=""></p>
-
-</div>
-
-<script type="text/javascript">
-days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
-weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
-</script>
-
-<% end %>
-
-<div id="disqus_thread"></div>
-
-</div>
-<% unless @occasion.cloudinary_image.nil? %>
-<div>
-<%= cl_image_tag(@occasion.cloudinary_image) %>
-<%# to display cloudinary image %>
-
-</div>
-<% end %>
-
-<% if current_user.present?%>
-  <% if @rsvp.present? %>
-    <% button_class = 'glyphicon glyphicon-heart' %>
-  <% else %>
-     <% button_class = 'glyphicon glyphicon-heart-empty' %>
-  <% end %>
-  <%= button_tag 'add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
-<!-- , unrsvp_url: unrsvp_url(@occasion) -->
-
-
-
-<% else %>
-      <%= link_to "Log in to save this event", user_session_path %>
-<% end %>
-
-
-<%= link_to " edit ", edit_occasion_path(@occasion) %>
-<%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+      <%= link_to " edit ", edit_occasion_path(@occasion) %>
+      <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+    </main>
+</div><!-- end container -->
+<%# ############################################################################################## %>
+<%# ############################## JAVASCRIPT for the APIS ####################################### %>
+<%# ############################################################################################## %>
+<%# ############################################################################################## %>
 
 <%# those are variables we need to use in javascript %>
 <script>
@@ -121,14 +99,19 @@ var myLatLng = {
     lng: <%= @occasion.longitude %>
 };
 </script>
-<!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap" async defer></script>
+
+
+<%# This is code for the weather API to work, have a look to the weather.js %>
+<script type="text/javascript">
+days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
+weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
+</script>
+<%# <!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
+ %>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap" async defer></script>
+
+ <%# DISQUS code, to show disqus in our occasion page %>
 <script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc&callback=initMap"
-          async defer></script>
-
-<%# ######## CODE FOR DISQUS ###### %>
 
 var disqus_config = function () {
     this.page.url = '<%= occasion_url(@occasion) %>'; // Replace PAGE_URL with your page's canonical URL variable
@@ -143,7 +126,6 @@ var disqus_config = function () {
     (d.head || d.body).appendChild(s);
 })();
 </script>
-<noscript>Please enable JavaScript to view the
-<a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+<noscript>
+  <p>Please enable JavaScript to view the comments.</p>
 </noscript>
-<%# CONTENT FOR CALENDER, SEARCH ETC %>

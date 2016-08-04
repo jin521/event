@@ -46,20 +46,22 @@ var getWeatherAt = function(days_from_now, lat, long){
 
         var event_day_weather = response.list[days_from_now];
         console.log(event_day_weather, days_from_now);
-        console.log(event_day_weather.temp.day);
-        console.log(event_day_weather.temp.eve);
-        console.log(event_day_weather.temp.morn);
-        console.log(event_day_weather.temp.night);
+        console.log('here');
         console.log(event_day_weather.temp.max);
         console.log(event_day_weather.temp.min);
         console.log(event_day_weather.weather[0]['description']);
         console.log(event_day_weather.weather[0]['icon']);
         console.log(event_day_weather.weather[0]['main']);
 //http://openweathermap.org/img/w/10d.png
-        $('#mainS').append(event_day_weather.weather[0]['main']);
+        $('#mainW').append(event_day_weather.weather[0]['main']);
         var icon = event_day_weather.weather[0]['icon'];
         var weatherIcon = 'http://openweathermap.org/img/w/' + icon + '.png';
         $('#weatherImg').attr('src',weatherIcon);
+        $('#maxTempW').append(event_day_weather.temp.max.toFixed(0));
+        $('#minTempW').append(event_day_weather.temp.min.toFixed(0));
+        $('#descriptionW').append(event_day_weather.weather[0]['description']);
+
+
 
 
 
