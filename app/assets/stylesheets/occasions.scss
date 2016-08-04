@@ -72,11 +72,11 @@
   border-right: $div-border;
   max-width: 100%;
     h3 {
-      background-color: $div-header-background-blue;
-      color: $div-header-text-blue;
+      background-color: $button-red;
+      color: #FFFFFF;
       padding: 1vh 0 1vh 0;
       border-top: $div-border;
-      border-left: 0.5vw solid $div-header-text-blue;
+      border-left: 0.5vw solid $button-red-hover;
     }
     p {
       font-size: 1.1em;

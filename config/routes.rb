@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, :path => 'accounts', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
-
   root :to => 'pages#home'
 
+  devise_for :users, path_names: {sign_in: "login", sign_out: "log_out"}, controllers: {omniauth_callbacks: "omniauth_callbacks"} 
   resources :occasions
   resources :users
+
+  get 'auth/twitter', as: "auth_provider"
+  get 'auth/twitter/callback', to: 'users#login'
 
   get 'feeds/index'
   get 'feeds/show'
