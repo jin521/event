@@ -12,18 +12,39 @@
     <div class="video-container">
         <div class="filter"></div>
         <%= video_tag (['Fade-To-Black.mp4', 'Fade-To-Black.webm']) %>
-        <!-- <video autoplay loop class="fillWidth">
+        <video autoplay loop class="fillWidth">
             <source src="/assets/Fade-To-Black.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
             <source src="/assets/Fade-To-Black.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
-        </video> -->
+        </video>
         <div class="poster hidden">
             <%= image_tag 'Fade-To-Black.jpeg' %>
         </div>
     </div>
 </div>
+
 <!-- ####################################################################### -->
-<!-- DIV : CALENDAR -->
-<!-- <div class="container">
+<!-- DIV 2: SEARCH BAR -->
+
+<section>
+  <div class="content-section sign-form form">
+      <h2>FIND YOUR ADVENTURE</h2>
+
+        <%= form_tag search_results_path, method: 'get' do %>
+        <li>
+          <div class="field">
+          <%= text_field_tag :search_keywords, nil, placeholder: "enter keyword" %>
+          </div>
+        </li>
+        <li>
+            <%= submit_tag "search", :class => 'submit home-search-submit'%>
+        </li>
+      <% end %>
+  </div>
+</section>
+
+<!-- ####################################################################### -->
+<!-- DIV 3: CALENDAR -->
+<div class="container">
     <div class="row">
         <section class="col-xs-12 col-md-6 calendar">
             <%= month_calendar events: @occasions, attribute: :date_start do |date, occasions| %>
@@ -39,16 +60,14 @@
 
     <div class="col-xs-12 col-md-6 show-calendar"></div>
 </div>
--->
+
 
 </div>
 <!-- ############################################################### -->
-<!-- DIV 2: CONTENT -->
+<!-- DIV 4: CONTENT -->
 
 <section class="homepage-content">
-<div class="content-section">
-    <h1>FIND YOUR ADVENTURE</h1>
-</div>
+
 <div class="photo-section">
     <h2>ARJINDIS EVENTS HAS SOMETHING FOR EVERYONE</h2>
 
