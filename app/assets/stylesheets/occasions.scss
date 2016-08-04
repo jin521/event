@@ -41,63 +41,81 @@
         font-weight: 500;
     }
 }
-
 // Occasion Path (single event page)
-
 .occasion-wrapper {
-  box-shadow: $div-shadow;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+    box-shadow: $div-shadow;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
-
 .occasion-image {
-  //width: 100%;
-  height: 100%;
+    width: 100%;
+    height: auto;
 }
-
-#map {
-  min-width: 100%;
+.map {
+    width: 100%;
+    height: 400px;
 }
-
 .occasion-heading {
-  margin-bottom: 5vh;
-  text-align: center;
-  padding-bottom: 2vh;
-  border-bottom: $div-border;
-  font-weight: 600;
+    margin-bottom: 5vh;
+    text-align: center;
+    padding-bottom: 2vh;
+    border-bottom: $div-border;
+    font-weight: 600;
 }
-
 .text-section {
-  border-left: $div-border;
-  border-right: $div-border;
-  max-width: 100%;
+    border-left: $div-border;
+    border-right: $div-border;
+    max-width: 100%;
     h3 {
-      background-color: $button-red;
-      color: #FFFFFF;
-      padding: 1vh 0 1vh 0;
-      border-top: $div-border;
-      border-left: 0.5vw solid $button-red-hover;
+        background-color: $div-header-background-blue;
+        color: $div-header-text-blue;
+        padding: 1vh 0;
+        border-top: $div-border;
+        border-left: 0.5vw solid $div-header-text-blue;
     }
     p {
-      font-size: 1.1em;
-      font-weight: 400;
+        font-size: 1.1em;
+        font-weight: 400;
     }
-    h3, p {
-      padding-left: 1vw;
-      border-bottom: $div-border;
+    h3,
+    p {
+        padding-left: 1vw;
+        border-bottom: $div-border;
     }
 }
-
+.occasion-section {}
 .description-section {
-  margin-top: 4vh;
-  @extend .text-section;
+    margin-top: 4vh;
+    @extend .text-section;
 }
-
 .details-section {
-  margin: 3vh 0 4vh 0;
-  @extend .text-section;
+    margin: 3vh 0 4vh;
+    @extend .text-section;
 }
-
 .map-section {
-  @extend .text-section;
+    @extend .text-section;
+}
+.map-section {
+    @extend .text-section;
+}
+.weather-section {
+    @extend .text-section;
+    h2 {
+        text-align: center;
+    }
+    table {
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 1.5;
+        tr {
+            td {
+                span#descriptionW {
+                    text-transform: capitalize;
+                }
+                &:first-child {
+                    padding-right: 35px;
+                }
+            }
+        }
+    }
 }

@@ -44,7 +44,11 @@ class OccasionsController < ApplicationController
 
   def show
     @occasion = Occasion.find(params[:id])
-
+    @occasions = Occasion.all.order("created_at DESC")
+    unless current_user.nil?
+      user_id = current_user.id  # from session
+      @rsvp = Rsvp.find_by(occasion_id: @occasion.id, user_id: user_id)
+    end
   end
 
   def edit
@@ -98,25 +102,45 @@ class OccasionsController < ApplicationController
     end
   end
 
+
+
   def rsvp
     # raise 'hell'
     user_id = current_user.id  # from session
     occasion_id = params[:occasion_id]  # from url
-    Rsvp.create occasion_id: occasion_id, user_id: user_id
-    render json: "true", :status => 'ok'
+    id = Rsvp.create occasion_id: occasion_id, user_id: user_id
+    response = {action: 'rsvp', status: 'success'}
+    render json: response #, :status => 200
   end
 
   def unrsvp
     user_id = current_user.id  # from session
     occasion_id = params[:occasion_id]  # from url
     if Rsvp.find_by(occasion_id: occasion_id, user_id: user_id).destroy
-      render json: "true", :status => 'ok'
+      response = {action: 'unrsvp', status: 'success'}
+      render json: response, :status => 200
     else
-      render json: "false", :status => 'ok'
+      response = {status: 'fail'}
+      render json: response, :status => 422
     end
-
   end
 
+  def rsvp_toggle  # this funciton can handle two urls, we dont actually need the above two functions any more.
+
+    user_id = current_user.id  # from session
+    occasion_id = params[:occasion_id]  # from url
+    rsvp = Rsvp.find_by(occasion_id: occasion_id, user_id: user_id)
+
+    if  rsvp.present?
+        rsvp.destroy
+        response = {action: 'unrsvp', status: 'success'}
+        render json: response, :status => 200
+    else
+        Rsvp.create occasion_id: occasion_id, user_id: user_id
+        response = {action: 'rsvp', status: 'success'}
+        render json: response #, :status => 200
+    end
+  end
 
 
   private

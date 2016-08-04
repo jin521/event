@@ -20,12 +20,15 @@ $(document).ready(function () {
  $('#rsvp_create').on('click', function (e) {
 
   var rsvpURL = $(e.target).attr('url');
-  console.log(rsvpURL);
+  //.target is the button itself, we are grabing the url attribute is set in the button helper on  show.html.erb
+
    $.ajax(rsvpURL).done(function (response) {
-        console.log("HERE", response);
-        //  debugger;
-      }).fail(function(){
-         console.log('failed');
+    //  console.log("HERE", response, response.status);
+     if (response.action === 'rsvp') {
+       $('#rsvp_create').removeClass('glyphicon-heart-empty').addClass("glyphicon-heart");
+     }else if (response.action === 'unrsvp'){
+       $('#rsvp_create').removeClass('glyphicon-heart').addClass("glyphicon-heart-empty");
+     }
   });
 });
 
@@ -43,20 +46,22 @@ var getWeatherAt = function(days_from_now, lat, long){
 
         var event_day_weather = response.list[days_from_now];
         console.log(event_day_weather, days_from_now);
-        console.log(event_day_weather.temp.day);
-        console.log(event_day_weather.temp.eve);
-        console.log(event_day_weather.temp.morn);
-        console.log(event_day_weather.temp.night);
+        console.log('here');
         console.log(event_day_weather.temp.max);
         console.log(event_day_weather.temp.min);
         console.log(event_day_weather.weather[0]['description']);
         console.log(event_day_weather.weather[0]['icon']);
         console.log(event_day_weather.weather[0]['main']);
 //http://openweathermap.org/img/w/10d.png
-        $('#mainS').append(event_day_weather.weather[0]['main']);
+        $('#mainW').append(event_day_weather.weather[0]['main']);
         var icon = event_day_weather.weather[0]['icon'];
         var weatherIcon = 'http://openweathermap.org/img/w/' + icon + '.png';
         $('#weatherImg').attr('src',weatherIcon);
+        $('#maxTempW').append(event_day_weather.temp.max.toFixed(0));
+        $('#minTempW').append(event_day_weather.temp.min.toFixed(0));
+        $('#descriptionW').append(event_day_weather.weather[0]['description']);
+
+
 
 
 
