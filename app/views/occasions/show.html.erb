@@ -1,12 +1,12 @@
 <div class="occasion-wrapper container">
   <main>
 
-<section>
+  <h1 class="occasion-heading">
      <%# #####rsvp /save events to user's account###### %>
     <% if current_user.present?%>
 
     <% if @rsvp.present? %>
-      <% button_class = 'glyphicon glyphicon-heart' %>
+      <% button_class = 'glyphicon glyphicon-heart'%>
     <% else %>
       <% button_class = 'glyphicon glyphicon-heart-empty' %>
     <% end %>
@@ -16,10 +16,10 @@
     <% else %>
         <%= link_to "Log in to save this event", user_session_path %>
     <% end %>
-</section>
 
 
-  <h1 class="occasion-heading"><%= @occasion.title %></h1>
+
+<%= @occasion.title %></h1>
 
       <div class="row">
         <div class="col-md-7 show-events">
@@ -116,9 +116,10 @@
 
       <div id="disqus_thread"></div>
 
-
+      <% unless @occasion.user_id != "nil" %>
       <%= link_to " edit ", edit_occasion_path(@occasion) %>
       <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+      <% end  %>
 
     </main>
 </div><!-- end container -->
