@@ -39,10 +39,10 @@
               <h3>Details</h3>
               <p>
               <strong>Start Date and time:
-              </strong><%=@occasion.date_start %></p>
+              </strong><%=@occasion.date_start.strftime("%d %B, %Y at %I:%M %P") %></p>
               <p>
               <strong>End Date and time:
-              </strong><%=@occasion.date_end %></p>
+              </strong><%=@occasion.date_end.strftime("%d %B, %Y at %I:%M %P") %></p>
               <p>
 
               <strong>Website: </strong>
