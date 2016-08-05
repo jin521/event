@@ -135,10 +135,10 @@
 
       <div id="disqus_thread"></div>
 
-      <% unless @occasion.user_id != "nil" %>
+
       <%= link_to " edit ", edit_occasion_path(@occasion) %>
       <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
-      <% end  %>
+
 
     </main>
 </div><!-- end container -->
