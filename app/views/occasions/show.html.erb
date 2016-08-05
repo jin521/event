@@ -44,6 +44,11 @@
               <%=@occasion.phone %></p>
               <% end  %>
 
+              <p><strong>Email:</strong>
+              <% if @occasion.email != nil %>
+            <%=@occasion.email %></p>
+              <% end  %>
+
 
               <p><strong>Price: $</strong>
               <% if @occasion.price != nil %>
