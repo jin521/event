@@ -9,69 +9,64 @@
         </div>
 
     </div>
-    <!-- <div class="video-container">
+ <div class="video-container">
         <div class="filter"></div>
         <%= video_tag (['Fade-To-Black.mp4', 'Fade-To-Black.webm']) %>
         <video autoplay loop class="fillWidth">
-            <source src="/assets/Fade-To-Black.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-            <source src="/assets/Fade-To-Black.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            <source src="/assets/Fade-To-Black.mp4" type="video/mp4"/>Your browser does not support the video tag. I suggest you upgrade your browser.
+            <source src="/assets/Fade-To-Black.webm" type="video/webm"/>Your browser does not support the video tag. I suggest you upgrade your browser.
         </video>
         <div class="poster hidden">
             <%= image_tag 'Fade-To-Black.jpeg' %>
         </div>
-    </div> -->
+    </div>
 </div>
 
 <!-- ####################################################################### -->
 <!-- DIV 2: SEARCH BAR -->
 
 <section>
-  <div class="content-section sign-form form">
-      <h2>FIND YOUR ADVENTURE</h2>
+    <div class="content-section">
+        <div class="home-search-button-wrap">
+            <%= form_tag search_results_path, method: 'get' do %>
+            <%= text_field_tag :search_keywords, nil, placeholder: "enter keyword", :class => 'home-search-input', :style => 'padding-left: 5vh;' %>
+            <%= submit_tag "SEARCH", :class => 'home-search-button'%>
+            <% end %>
+        </div>
 
-        <%= form_tag search_results_path, method: 'get' do %>
-        <li>
-          <div class="field">
-          <%= text_field_tag :search_keywords, nil, placeholder: "enter keyword" %>
-          </div>
-        </li>
-        <li>
-            <%= submit_tag "search", :class => 'submit home-search-submit'%>
-        </li>
-      <% end %>
-  </div>
+    </div>
 </section>
 
 <!-- ####################################################################### -->
 <!-- DIV 3: CALENDAR -->
 <div class="container">
+  <h1 class="calender-home-title">Search Events</h1>
+
     <div class="row">
-        <section class="col-xs-12 col-md-6">
-          <%= render 'calendar' %>
+        <section class="col-xs-12 col-md-6 home-calender">
+            <%= render 'calendar' %>
         </section>
 
-        <section class="col-xs-12 col-md-6">
-          <%= render 'show_events_from_calendar' %>
+        <section class="col-xs-12 col-md-6 calender-events-list">
+            <%= render 'show_events_from_calendar' %>
         </section>
-</div>
-
-
+    </div>
 </div>
 <!-- ############################################################### -->
 <!-- DIV 4: CONTENT -->
 
 <section class="homepage-content">
 
-<div class="photo-section">
-    <h2>ARJINDIS EVENTS HAS SOMETHING FOR EVERYONE</h2>
+    <div class="photo-section">
+        <h1>ARJINDIS EVENTS HAS SOMETHING FOR EVERYONE</h1>
 
-    <h4>One way to get the most out of life is to look upon it as an adventure. -
-        <i>William Feather</i>
-    </h4>
+        <h4>One way to get the most out of life is to look upon it as an adventure. -
+            <i>William Feather</i>
+        </h4>
 
-    <%= link_to '<button type="button" name="button" class="explore-section-button">BROWSE ALL EVENTS</button>'.html_safe, occasions_path %>
-</div>
+        <%= link_to '<button type="button" name="button" class="explore-section-button">BROWSE ALL EVENTS</button>'.html_safe, occasions_path %>
+    </div>
 
-<%= image_tag 'home-explore.jpg', :class => 'explore-image' %>
-<!-- <img src="/assets/home-explore.jpg" class="explore-image"/> -->
+    <%= image_tag 'home-explore.jpg', :class => 'explore-image' %>
+    <!-- <img src="/assets/home-explore.jpg" class="explore-image"/> -->
 </section>

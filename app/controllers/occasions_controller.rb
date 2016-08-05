@@ -33,8 +33,12 @@ class OccasionsController < ApplicationController
   end
 
   def create
+    # raise 'hell'
     @occasion = Occasion.new(occasion_params) #an object of objects from the data we add in the form when we create a new event
     @occasion.user_id = @current_user.id
+
+    @occasion.date_start = DateTime.strptime(params[:occasion][:date_start], "%d.%m.%Y %I:%M %P")
+    @occasion.date_end = DateTime.strptime(params[:occasion][:date_end], "%d.%m.%Y %I:%M %P")
 
     if params[:file].present?
       req = Cloudinary::Uploader.upload(params[:file])     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new occasion.
@@ -153,7 +157,7 @@ class OccasionsController < ApplicationController
 
   private
   def occasion_params
-      params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
+      params.require(:occasion).permit(:title, :description, :location,:latitude, :longitude, :email, :phone)
   end
 
   def check_for_user

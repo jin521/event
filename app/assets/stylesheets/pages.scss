@@ -43,6 +43,7 @@
     border-right: none;
     border-left: none;
     position: relative;
+    //margin-top: -3vw;
 }
 .no-video .video-container video,
 .touch .video-container video {
@@ -74,7 +75,7 @@
 .video-container video {
     position: absolute;
     z-index: 0;
-    bottom: 0;
+    top: 0;
 }
 .video-container video.fillWidth {
     width: 100%;
@@ -83,56 +84,87 @@
 /* DIV 2 */
 .homepage-content {
     background-color: #FFFFFF;
-    min-height: 200vh;
+    min-height: 125vh;
     position: relative;
     /* Allows me to manipulate absolute postioned child elements */
 }
-.homepage-content {
-    h2,
-    h4 {
-        position: absolute;
-        left: 22vw;
-    }
-    h2 {
-        bottom: 110vh;
-    }
-    h4 {
-        bottom: 105vh;
-    }
-}
+
+//----------------------------------------------------------------------------//
+
+
 .content-section {
     min-height: 20vh;
     width: 100vw;
     background-color: #14141E;
     margin-top: -3vh; // Bad way of solving the spacing problem.
+    position: relative;
     box-shadow: $div-shadow;
     h2 {
         text-align: center;
         color: #FFFFFF;
-        padding-top: 1vh;
+        padding-top: 2vh;
     }
-    li {
-      list-style-type: none;
-      display: inline-block;
+    span {
+      height: 30px;
+      width: 30px;
+      background-color: #FFFFFF;
     }
 }
 
-.home-search-submit {
-  background-color: none;
+//----------------------------------------------------------------------------//
+
+.home-search-input {
+  border: 3px solid $button-red;
+  height: 8vh;
+  width: 45vw;
+  border-radius: 1px;
+
 }
 
-.photo-section {
-    background-color: yellow;
+.home-search-button {
+  width: 15vw;
+  height: 8vh;
+  position: absolute;
+  border: 1px solid $button-red;
+  background: $button-red;
+  text-align: center;
+  color: #FFFFFF;
+  border-radius: 1px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.home-search-button-wrap{
+  width: 60vw;
+  margin: 0 auto;
+  position: relative;
+  top: 5vh
+}
+
+//----------------------------------------------------------------------------//
+
+.homepage-content {
+    h1,
+    h4 {
+        text-align: center;
+    }
+    h1 {
+        bottom: 110vh;
+        padding-top: 8vh;
+    }
+    h4 {
+        bottom: 105vh;
+    }
 }
 
 .explore-section-button {
     @extend .red-button;
     /* DRY coding */
     position: absolute;
-    left: 40%;
+    left: 39vw;
     /* centre position */
-    left: 40%;
-    bottom: 90vh;
+    left: 39vw;
+    bottom: 95vh;
 }
 
 .explore-image {
@@ -144,4 +176,33 @@
 
 .has-events {
     background-color: $button-red;
+}
+//----------------------------------------------------------------------------//
+// CALENDER //
+
+.calender-events-list {
+  border: $div-border;
+  box-shadow: $div-shadow;
+  margin-top: 1vh;
+  width: 49%;
+  margin-left: 2%;
+}
+
+.home-calender {
+  border: $div-border;
+  box-shadow: $div-shadow;
+  margin-top: 1vh;
+  width: 49%;
+}
+
+.calender-home-title {
+  text-align: center;
+  font-size: 4em;
+  font-weight: 600;
+}
+
+// Header nav
+
+.navbar {
+  margin-bottom: 0px !important;
 }
