@@ -98,6 +98,17 @@
 .map-section {
     @extend .text-section;
 }
+.favourites-section {
+    button#rsvp_create {
+        background-color: transparent;
+        border: none;
+        color: red;
+        &:focus {
+            background-color: transparent;
+            border: none;
+        }
+    }
+}
 .weather-section {
     @extend .text-section;
     h2 {
@@ -119,6 +130,5 @@
         }
     }
 }
-
 //----------------------------------------------------------------------------//
 //RSVP BUTTON //

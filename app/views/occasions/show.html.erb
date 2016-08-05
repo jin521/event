@@ -74,7 +74,7 @@
 
   <section class="occasion-section favourites-section">
              <%# #####rsvp /save events to user's account###### %>
-            <h3> <span> Save or remove this event </span>
+            <h3>
 
                 <% if current_user.present?%>
 
@@ -88,6 +88,8 @@
                 <% else %>
                     <%= link_to "Log in to save this event", user_session_path %>
                 <% end %>
+
+                <span> RSVP Event </span>
           </h3>
 </section>
 
