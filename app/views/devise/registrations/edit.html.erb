@@ -1,6 +1,5 @@
 <div class="container sign-form form">
-  <div class="row">
-    <div class="col-xs-5">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
         <hgroup>
             <h1>Edit <%= resource_name.to_s.humanize %></h1>
         </hgroup>
@@ -46,16 +45,7 @@
         <% end %>
             <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'submit' %>
     </div>
-    <div class="col-xs-5">
-        <hgroup>
-            <h1>Edit <%= resource_name.to_s.humanize %></h1>
-        </hgroup>
-
-      </div>
-
 </div>
-</div>
-<h3></h3>
 
 
 
