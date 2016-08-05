@@ -45,9 +45,9 @@
               <% end  %>
 
 
-              <p><strong>Price:</strong>
-              <% if @occasion.price =="true" %>
-              <%="free event" %></p>
+              <p><strong>Price: $</strong>
+              <% if @occasion.price != nil %>
+            <%=@occasion.price %></p>
               <% end  %>
 
 

@@ -157,7 +157,7 @@ class OccasionsController < ApplicationController
 
   private
   def occasion_params
-      params.require(:occasion).permit(:title, :description, :location,:latitude, :longitude, :email, :phone)
+      params.require(:occasion).permit(:title, :description, :location,:latitude, :longitude, :email, :phone, :website, :price)
   end
 
   def check_for_user
