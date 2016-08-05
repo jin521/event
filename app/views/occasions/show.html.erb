@@ -1,25 +1,13 @@
 <div class="occasion-wrapper container">
   <main>
 
-  <h1 class="occasion-heading">
-     <%# #####rsvp /save events to user's account###### %>
-    <% if current_user.present?%>
-
-    <% if @rsvp.present? %>
-      <% button_class = 'glyphicon glyphicon-heart'%>
-    <% else %>
-      <% button_class = 'glyphicon glyphicon-heart-empty' %>
-    <% end %>
-    <%= button_tag  ' ', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
-
-
-    <% else %>
-        <%= link_to "Log in to save this event", user_session_path %>
-    <% end %>
 
 
 
-<%= @occasion.title %></h1>
+  <h1 class="occasion-heading"><%= @occasion.title %></h1>
+
+
+
 
       <div class="row">
         <div class="col-md-7 show-events">
@@ -83,8 +71,32 @@
           </section>
         </div><!-- end col-md-7 main content-->
         <div class="col-md-5 calendar-show">
+
+  <section class="occasion-section favourites-section">
+             <%# #####rsvp /save events to user's account###### %>
+            <h3> <span> Save or remove this event </span>
+
+                <% if current_user.present?%>
+
+                <% if @rsvp.present? %>
+                  <% button_class = 'glyphicon glyphicon-heart'%>
+                <% else %>
+                  <% button_class = 'glyphicon glyphicon-heart-empty' %>
+                <% end %>
+                <%= button_tag  ' ', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
+
+                <% else %>
+                    <%= link_to "Log in to save this event", user_session_path %>
+                <% end %>
+          </h3>
+</section>
+
+</br>
+
+
           <%= render 'search_occasion_form' %>
           <%= render 'calendar'%>
+
 <%#  To show the WEATHER DETAILS for every event. because our forecast is only 16 days ahead, we need to create an if statement to check if the event is happening in before and we can show the weather. %>
       <% if (@occasion.date_start < Date.today+16.days)%>
           <section class="weather-section occasion-section" id="weatherinfo">
