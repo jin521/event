@@ -41,7 +41,6 @@
                 outline: none;
             }
         }
-        .cloudinary-fileupload,
         .submit {
             background-color: $button-red !important;
             color: $white;
@@ -117,50 +116,47 @@
 }
 /* =============== Search FORM =============== */
 .search-occasion-form {
-  border-left: $div-border;
-  border-right: $div-border;
-  border-bottom: $div-border;
-  margin-bottom: 2vh;
-  position: relative;
-  top: -3vh; //Bad way of fixing spaving problem.
+    border-left: $div-border;
+    border-right: $div-border;
+    border-bottom: $div-border;
+    margin-bottom: 2vh;
+    position: relative;
+    top: -3vh; //Bad way of fixing spaving problem.
     h3 {
-      padding: 2vh 0 0 1vw;
-      line-height: 5vh;
-      background: $div-header-background-blue;
-      color: $div-header-text-blue;
-      border-left: 0.5vw solid $div-header-text-blue;
-      padding-top: 0;
+        padding: 2vh 0 0 1vw;
+        line-height: 5vh;
+        background: $div-header-background-blue;
+        color: $div-header-text-blue;
+        border-left: 0.5vw solid $div-header-text-blue;
+        padding-top: 0;
     }
     .search-input {
-      border: 3px solid $button-red;
-      height: 5vh;
-      width: 80%;
-      border-radius: 1px;
+        border: 3px solid $button-red;
+        height: 5vh;
+        width: 80%;
+        border-radius: 1px;
     }
-
     .search-button {
-      width: 20%;
-      height: 5vh;
-      position: absolute;
-      border: 1px solid $button-red;
-      background: $button-red;
-      text-align: center;
-      color: #FFFFFF;
-      border-radius: 1px;
-      font-size: 20px;
-      font-weight: 600;
+        width: 20%;
+        height: 5vh;
+        position: absolute;
+        border: 1px solid $button-red;
+        background: $button-red;
+        text-align: center;
+        color: #FFFFFF;
+        border-radius: 1px;
+        font-size: 20px;
+        font-weight: 600;
     }
-
     .search-date-input {
-      border: 3px solid $button-red;
-      height: 5vh;
-      width: 30%;
-      border-radius: 1px;
-      margin-right: 9%
+        border: 3px solid $button-red;
+        height: 5vh;
+        width: 30%;
+        border-radius: 1px;
+        margin-right: 9%;
     }
-
     .search-wrap {
-      position: relative;
-      margin: 5%;
+        position: relative;
+        margin: 5%;
     }
-  }
+}
