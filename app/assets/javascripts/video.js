@@ -1,6 +1,8 @@
 //jQuery is required to run this code
 $( document ).ready(function() {
 
+
+// video
     scaleVideoContainer();
 
     initBannerVideoSize('.video-container .poster img');
@@ -15,7 +17,9 @@ $( document ).ready(function() {
     });
 
 
-  $('.datepicker').datepicker();
+
+
+
 
 });
 

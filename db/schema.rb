@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20160804081820) do
     t.string   "address"
     t.integer  "user_id"
     t.integer  "price"
-
   end
 
   create_table "rsvps", force: :cascade do |t|

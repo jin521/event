@@ -11,30 +11,15 @@
         </div>
 
         <div class="group">
-            <%= f.text_field :date_start, class:"datepicker" %>
+            <%= f.text_field :date_start, class:"datepicker", required: true %>
             <span class="highlight"></span><span class="bar"></span>
             <%= f.label :date_start  %>
         </div>
 
         <div class="group">
-
-            <%= f.text_field :date_end %>
+            <%= f.text_field :date_end, class:"datepicker", required: true %>
             <span class="highlight"></span><span class="bar"></span>
-            <%= f.label :date_end, class:"datepicker" %>
-        </div>
-
-        <div class="group">
-            <%= f.text_field :description %>
-            <span class="highlight"></span><span class="bar"></span>
-            <%= f.label :description  %>
-        </div>
-
-        <div class="group">
-          <%= f.text_field :image %>
-            <%= cl_image_tag(@occasion.cloudinary_image) %>
-            <%# To display cloudinary image %>
-            <span class="highlight"></span><span class="bar"></span>
-            <%= f.label :image  %>
+            <%= f.label :date_end%>
         </div>
 
         <div class="group">
@@ -53,6 +38,22 @@
             <%= f.text_field :email %>
             <span class="highlight"></span><span class="bar"></span>
             <%= f.label :email  %>
+        </div>
+
+        <div class="group">
+            <%= f.text_field :phone %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :phone  %>
+        </div>
+
+        <div class="group">
+            <%= f.text_area(:description, cols: 40, rows: 15, :placeholder => 'Description') %>
+            <span class="highlight"></span><span class="bar"></span>
+        </div>
+
+        <div class="">
+            <%# To display cloudinary image %>
+            <%= cl_image_upload_tag(@occasion.cloudinary_image) %>
         </div>
 
         <%= f.submit "Sign up", :class => 'submit' %>
