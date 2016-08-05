@@ -4,6 +4,11 @@ class OccasionsController < ApplicationController
   def index
     @occasions = Occasion.all.order("created_at DESC")
 
+
+    # only use API if 6 hours since last fetch!
+    # last_occasion_fetched_at = Occasion.where(user_id: nil).order('created_at').last.created_at
+    # if last_occasion_fetched_at > 6.hours.ago
+
       ###############################
       # EVENTFINDA gem
       auth     = {:username => "gaproject", :password => "p2sb3nk4g3d7"}
