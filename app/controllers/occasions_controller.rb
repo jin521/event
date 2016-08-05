@@ -1,5 +1,5 @@
 class OccasionsController < ApplicationController
-  before_action :check_for_user, :except => [:index, :show]
+  before_action :check_for_user, :except => [:index, :show, :search_results]
 
   def index
     @occasions = Occasion.all.order("created_at DESC")
@@ -8,14 +8,14 @@ class OccasionsController < ApplicationController
       # EVENTFINDA gem
       auth     = {:username => "gaproject", :password => "p2sb3nk4g3d7"}
       response = HTTParty.get('http://api.eventfinda.com.au/v2/events.json?rows=20', :basic_auth => auth)
-        # binding.pry
+
         response["events"].each do |event|
         occasion = Occasion.find_by :eventfinda_id => event['id']
         # Adding to a var the event id
         #creating an img cariable to get images
         image = event['images']['images'][0]['transforms']['transforms'][-1]['url']
         if occasion.nil?
-          Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :eventfinda_id => event['id'], :address => event['address'], :location => event['location_summary'], :image => image
+          Occasion.create :title => event['name'], :description => event['description'], :date_start => event['datetime_start'], :date_end => event['datetime_end'], :latitude => event['point']['lat'], :longitude => event['point']['lng'], :eventfinda_id => event['id'], :address => event['address'], :location => event['location_summary'], :image => image, :website => event['url'], :phone => event['phone'], :price => event['is_free']
         end
         # Adding the data to our database and then checking if the id is there not to repeat the events
       end
@@ -28,8 +28,12 @@ class OccasionsController < ApplicationController
   end
 
   def create
+    # raise 'hell'
     @occasion = Occasion.new(occasion_params) #an object of objects from the data we add in the form when we create a new event
     @occasion.user_id = @current_user.id
+
+    @occasion.date_start = DateTime.strptime(params[:occasion][:date_start], "%d.%m.%Y %I:%M %P")
+    @occasion.date_end = DateTime.strptime(params[:occasion][:date_end], "%d.%m.%Y %I:%M %P")
 
     if params[:file].present?
       req = Cloudinary::Uploader.upload(params[:file])     # This is the magic stuff that will let us upload an image to Cloudinary when creating a new occasion.
@@ -148,7 +152,7 @@ class OccasionsController < ApplicationController
 
   private
   def occasion_params
-      params.require(:occasion).permit(:title, :description,:date, :location,:latitude, :longitude, :email, :phone)
+      params.require(:occasion).permit(:title, :description, :location,:latitude, :longitude, :email, :phone)
   end
 
   def check_for_user

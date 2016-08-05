@@ -1,6 +1,26 @@
 <div class="occasion-wrapper container">
   <main>
-    <h1 class="occasion-heading"><%= @occasion.title %></h1>
+
+  <h1 class="occasion-heading">
+     <%# #####rsvp /save events to user's account###### %>
+    <% if current_user.present?%>
+
+    <% if @rsvp.present? %>
+      <% button_class = 'glyphicon glyphicon-heart'%>
+    <% else %>
+      <% button_class = 'glyphicon glyphicon-heart-empty' %>
+    <% end %>
+    <%= button_tag  ' ', type: 'button',  id: 'rsvp_create', url: rsvp_toggle_url(@occasion), class: button_class %>
+
+
+    <% else %>
+        <%= link_to "Log in to save this event", user_session_path %>
+    <% end %>
+
+
+
+<%= @occasion.title %></h1>
+
       <div class="row">
         <div class="col-md-7 show-events">
           <figure>
@@ -18,11 +38,31 @@
           <section class="details-section occasion-section">
               <h3>Details</h3>
               <p>
-              <strong>Start Date:
+              <strong>Start Date and time:
               </strong><%=@occasion.date_start %></p>
               <p>
-              <strong>End Date:
+              <strong>End Date and time:
               </strong><%=@occasion.date_end %></p>
+              <p>
+
+              <strong>Website: </strong>
+              <% if @occasion.website != nil %>
+              <%=@occasion.website %></p>
+              <% end %>
+
+
+              <p><strong>Phone:</strong>
+              <% if @occasion.phone != nil %>
+              <%=@occasion.phone %></p>
+              <% end  %>
+
+
+              <p><strong>Price:</strong>
+              <% if @occasion.price =="true" %>
+              <%="free event" %></p>
+              <% end  %>
+
+
           </section>
           <section class="map-section occasion-section">
             <h3>Location</h3>
@@ -75,16 +115,12 @@
       </div><!-- end row -->
 
       <div id="disqus_thread"></div>
-      <% if current_user.present?%>
-          <%= button_tag 'click to add to my event list', type: 'button',  id: 'rsvp_create', url: rsvp_url(@occasion) %>
 
-      <% else %>
-          <%= link_to "Log in to save this event", user_session_path %>
-      <% end %>
-
-
+      <% unless @occasion.user_id != "nil" %>
       <%= link_to " edit ", edit_occasion_path(@occasion) %>
       <%= link_to " delete", occasion_path(@occasion), method: :delete, data:{ confirm:"are you sure? "} %>
+      <% end  %>
+
     </main>
 </div><!-- end container -->
 <%# ############################################################################################## %>
@@ -92,19 +128,21 @@
 <%# ############################################################################################## %>
 <%# ############################################################################################## %>
 
+
+<%# this is for the map to get latitude and longitude %>
+<script type="text/javascript">
 <%# those are variables we need to use in javascript %>
-<script>
 var myLatLng = {
     lat: <%= @occasion.latitude %>,
     lng: <%= @occasion.longitude %>
 };
 </script>
-
-
 <%# This is code for the weather API to work, have a look to the weather.js %>
 <script type="text/javascript">
-days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
-weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
+$(document).ready(function(){
+  days_to_event = <%= ((@occasion.date_start).to_date - Date.today).to_i %>-1;
+  weather = getWeatherAt(days_to_event, '<%= @occasion.latitude %>', '<%= @occasion.longitude %>');
+});
 </script>
 <%# <!-- google map API key - AIzaSyDQhiJp0Ee3xKve1KYOLfVY0kF9lHF1xrc -->
  %>

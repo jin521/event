@@ -1,46 +1,62 @@
-<%= form_for @occasion, :html => {:multipart => true} do |f|%>
-  <div class="">
-    <%= f.label :title  %>
-    <%= f.text_field :title %>
-  </div>
+<div class="container sign-form form">
+    <div class="col-xs-4 col-md-offset-3">
+      <hgroup>
+        <h1>New Event</h1>
+      </hgroup>
+        <%= form_for @occasion, :html => {:multipart => true} do |f|%>
+        <div class="group">
+            <%= f.text_field :title %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :title %>
+        </div>
 
+        <div class="group">
+            <%= f.text_field :date_start, class:"datepicker", required: true %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :date_start  %>
+        </div>
 
+        <div class="group">
+            <%= f.text_field :date_end, class:"datepicker", required: true %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :date_end%>
+        </div>
 
-  <div class="">
-    <%= f.label :date_start  %>
-    <%= f.text_field :date_start %>
-  </div>
+        <div class="group">
+            <%= f.text_field :location %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :location  %>
+        </div>
 
-  <div class="">
-    <%= f.label :date_end  %>
-    <%= f.text_field :date_end %>
-  </div>
+        <div class="group">
+            <%= f.text_field :website %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :website  %>
+        </div>
 
-  <div class="">
-    <%= f.label :description  %>
-    <%= f.text_field :description %>
-  </div>
+        <div class="group">
+            <%= f.text_field :email %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :email  %>
+        </div>
 
+        <div class="group">
+            <%= f.text_field :phone %>
+            <span class="highlight"></span><span class="bar"></span>
+            <%= f.label :phone  %>
+        </div>
 
-  <div>
-    <%= cl_image_tag(@occasion.cloudinary_image) %> <%# To display cloudinary image %>
-  </div>
+        <div class="group">
+            <%= f.text_area(:description, cols: 40, rows: 15, :placeholder => 'Description') %>
+            <span class="highlight"></span><span class="bar"></span>
+        </div>
 
-  <div class="">
-    <%= f.label :location  %> <br>
-    <%= f.text_field :location %><br>
+        <div class="">
+            <%# To display cloudinary image %>
+            <%= cl_image_upload_tag(@occasion.cloudinary_image) %>
+        </div>
 
-  </div>
-
-  <div class="">
-    <%= f.label :website  %>
-    <%= f.text_field :website %>
-  </div>
-
-  <div class="">
-    <%= f.label :email  %>
-    <%= f.text_field :email %>
-  </div>
-
-  <%= f.submit %>
-<% end %>
+        <%= f.submit button_text, :class => 'submit' %>
+        <% end %>
+    </div>
+</div>
