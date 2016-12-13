@@ -12,6 +12,7 @@ class OccasionsController < ApplicationController
 
       ###############################
       # EVENTFINDA gem
+      # You can implement the "EventFinda" ruby gem and make things nice and neat : )
       auth     = {:username => "gaproject", :password => "p2sb3nk4g3d7"}
       response = HTTParty.get('http://api.eventfinda.com.au/v2/events.json?rows=20', :basic_auth => auth)
 
